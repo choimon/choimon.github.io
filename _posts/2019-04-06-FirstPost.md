@@ -1,4 +1,4 @@
-
+---
 title: "title of my first post"
 tags: 
   - myfirsttag
@@ -20,13 +20,33 @@ gallery:
   - url: /assets/images/flash.png
     image_path: /assets/images/flash.png
     alt: "placeholder image 1"
-    title: "Image 1 title caption
+    title: "Image 1 title caption"
+---
+Hello!!!
+
+```yaml
+gallery:
+  - url: /assets/images/flash.png
+    image_path: /assets/images/flash.png
+    alt: "placeholder image 1"
+    title: "Image 1 title caption"
+```
+djdjdj
+
+```liquid
+{% raw %}{% let me se ehow this shows %}{% endraw %}
+```
+
+some text after liquidddd
+
+# hhhh
 
 
+# # header:  # 헤더에 유튜브 비디오 삽입
+# #   video:
+# #     id: XsxDH4HcOWA
+# #     provider: youtube
 
-header:  # 헤더에 유튜브 비디오 삽입
-  video:
-    id: XsxDH4HcOWA
-    provider: youtube
-
-link: https://github.com # Direct Link 만들기
+# # link: https://github.com # Direct Link 만들기
+# # ---
+# hh

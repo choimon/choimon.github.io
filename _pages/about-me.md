@@ -1,11 +1,20 @@
 ---
-title: "Welcome To My Blog"
+title: "Brief Intro about Me"
 permalink: /about-me/
 date: 2019-04-06T03:02:20+00:00
+
+gallery:
+ - url: /assets/images/myprofilepic_big.jpg
+   image_path: /assets/images/myprofilepic_big.jpg
+   alt: "placeholder image 1"
+   title: "ProfilePicture_Taiwan"
+
 ---
 
-Welcome visitors!
 
+{% include gallery id="gallery" caption="Taiwan, 2019." %}
+
+Welcome visitors!
 My name is Minjeong Choi 
 ...
 <!-- I made this blog primarily because there are so many topics I want to learn and share with other people. I am currently interested in projects with raspberry pi, 

@@ -107,7 +107,7 @@ analytics:
 # Site Author
 author:
   name             : "Minjeong Choi"
-  avatar           : # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
+  avatar           : "/assets/images/myprofilepic.png" # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
   bio              : "Passionate learner"
   location         : "Seoul, Korea"
   email            : 

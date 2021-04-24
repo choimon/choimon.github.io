@@ -15,24 +15,24 @@
 minimal_mistakes_skin: 'default' # "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum", "sunrise"
 
 # Site Settings
-locale: 'en-US'
+locale: 'ko-KR'
 title: 'ChoiLog'
 title_separator: '-'
-subtitle: # site tagline that appears below site title in masthead
-name: 'Minjeong Choi'
-description: 'An amazing website.'
-url: # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
+subtitle: '&#60;Choi&#62;💃🏻&#60;Choi&#47;&#62;' # <Choi><Choi/>  site tagline that appears below site title in masthead
+name: 'ChoiChoi' # name at the most bottom
+description: 'tech blog. Java, Spring Boot, GIS, Math.'
+url: 'https://choimon.github.io' # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl: # the subpath of your site, e.g. "/blog"
-repository: # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
-teaser: # path of fallback teaser image, e.g. "/assets/images/500x300.png"
-logo: # path of logo image to display in the masthead, e.g. "/assets/images/88x88.png"
-masthead_title: # overrides the website title displayed in the masthead, use " " for no title
+repository: 'choimon/choimon.github.io' # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
+teaser: '/assets/images/favicon.png' # path of fallback teaser image, e.g. "/assets/images/500x300.png"
+logo: '/assets/images/favicon.png'# path of logo image to display in the masthead, e.g. "/assets/images/88x88.png"
+masthead_title: 'Choi&apos;s Blog' # overrides the website title displayed in the masthead, use " " for no title
 # breadcrumbs            : false # true, false (default)
 words_per_minute: 200
 comments:
-  provider: # false (default), "disqus", "discourse", "facebook", "staticman", "staticman_v2", "utterances", "custom"
+  provider: "disqus" # false (default), "disqus", "discourse", "facebook", "staticman", "staticman_v2", "utterances", "custom"
   disqus:
-    shortname: # https://help.disqus.com/customer/portal/articles/466208-what-s-a-shortname-
+    shortname: "choilog" # https://help.disqus.com/customer/portal/articles/466208-what-s-a-shortname-
   discourse:
     server: # https://meta.discourse.org/t/embedding-discourse-comments-via-javascript/31963 , e.g.: meta.discourse.org
   facebook:
@@ -52,8 +52,8 @@ reCaptcha:
 atom_feed:
   path: # blank (default) uses feed.xml
   hide: # true, false (default)
-search: # true, false (default)
-search_full_content: # true, false (default)
+search: true # true, false (default)
+search_full_content: true # true, false (default)
 search_provider: # lunr (default), algolia, google
 algolia:
   application_id: # YOUR_APPLICATION_ID
@@ -93,7 +93,7 @@ analytics:
 
 # Site Author
 author:
-  name: '초이 민정'
+  name: 'Minjeong Choi'
   avatar: # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
   bio: 'an **avid** learner.'
   location: 'Seoul, Korea'
@@ -101,10 +101,10 @@ author:
   links:
     - label: 'Email'
       icon: 'fas fa-fw fa-envelope-square'
-      # url: "mailto:your.name@email.com"
+      url: "sanjosebadger@gmail.com"
     - label: 'Website'
       icon: 'fas fa-fw fa-link'
-      # url: "https://your-website.com"
+      url: "https://www.minjeongchoi.com"
     - label: 'Twitter'
       icon: 'fab fa-fw fa-twitter-square'
       # url: "https://twitter.com/"
@@ -113,7 +113,7 @@ author:
       # url: "https://facebook.com/"
     - label: 'GitHub'
       icon: 'fab fa-fw fa-github'
-      # url: "https://github.com/"
+      url: "https://github.com/choimon"
     - label: 'Instagram'
       icon: 'fab fa-fw fa-instagram'
       # url: "https://instagram.com/"
@@ -123,7 +123,7 @@ footer:
   links:
     - label: 'Twitter'
       icon: 'fab fa-fw fa-twitter-square'
-      # url:
+      url: "sanjosebadger@gmail.com"
     - label: 'Facebook'
       icon: 'fab fa-fw fa-facebook-square'
       # url:
@@ -257,7 +257,7 @@ compress_html:
   ignore:
     envs: development
 
-# Defaults
+# Defaults: default settings for posts
 defaults:
   # _posts
   - scope:
@@ -270,3 +270,10 @@ defaults:
       comments: # true
       share: true
       related: true
+  # _pages
+  - scope:
+      path: "_pages"
+      type: pages
+    values:
+      layout: single
+      author_profile: true

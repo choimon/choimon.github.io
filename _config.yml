@@ -15,7 +15,7 @@
 minimal_mistakes_skin: 'default' # "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum", "sunrise"
 
 # Site Settings
-locale: 'ko-KR'
+locale: 'en-US'
 title: 'ChoiLog'
 title_separator: '-'
 subtitle: '&#60;Choi&#62;💃🏻&#60;Choi&#47;&#62;' # <Choi><Choi/>  site tagline that appears below site title in masthead

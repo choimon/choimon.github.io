@@ -18,7 +18,7 @@ minimal_mistakes_skin: 'default' # "air", "aqua", "contrast", "dark", "dirt", "n
 locale: 'en-US'
 title: 'ChoiLog'
 title_separator: '-'
-subtitle: '&#60;Choi&#62;💃🏻&#60;Choi&#47;&#62;' # <Choi><Choi/>  site tagline that appears below site title in masthead
+subtitle: 'blog for everyone 🦜' #'&#60;Choi&#62;💃🏻&#60;Choi&#47;&#62;' # <Choi><Choi/>  site tagline that appears below site title in masthead
 name: 'ChoiChoi' # name at the most bottom
 description: 'tech blog. Java, Spring Boot, GIS, Math.'
 url: 'https://choimon.github.io' # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
@@ -26,7 +26,7 @@ baseurl: # the subpath of your site, e.g. "/blog"
 repository: 'choimon/choimon.github.io' # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
 teaser: '/assets/images/favicon.png' # path of fallback teaser image, e.g. "/assets/images/500x300.png"
 logo: '/assets/images/favicon.png'# path of logo image to display in the masthead, e.g. "/assets/images/88x88.png"
-masthead_title: 'Choi&apos;s Blog' # overrides the website title displayed in the masthead, use " " for no title
+masthead_title: '&#60;Choi&#47;&#62;'#'Choi&apos;s Blog' # overrides the website title displayed in the masthead, use " " for no title
 # breadcrumbs            : false # true, false (default)
 words_per_minute: 200
 comments:
@@ -51,7 +51,7 @@ reCaptcha:
   secret:
 atom_feed:
   path: # blank (default) uses feed.xml
-  hide: # true, false (default)
+  hide: true # true, false (default)
 search: true # true, false (default)
 search_full_content: true # true, false (default)
 search_provider: # lunr (default), algolia, google
@@ -96,34 +96,38 @@ author:
   name: 'Minjeong Choi'
   avatar: 'assets/images/profile_laptop.JPG' # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
   bio: 'an **avid** learner.'
-  location: 'Seoul, Korea'
+  location: 'Seoul, Korea' #📍 &nbsp;&nbsp;Seoul, Korea'
   email:
   links:
-    - label: 'Email'
-      icon: 'fas fa-fw fa-envelope-square'
-      url: mailto:sanjosebadger@gmail.com
-    - label: 'Website'
+    
+    - label: 'Website' #🔗
       icon: 'fas fa-fw fa-link'
       url: "https://www.minjeongchoi.com"
-    - label: 'Twitter'
-      icon: 'fab fa-fw fa-twitter-square'
-      # url: "https://twitter.com/"
-    - label: 'Facebook'
-      icon: 'fab fa-fw fa-facebook-square'
-      # url: "https://facebook.com/"
-    - label: 'GitHub'
+    
+    - label: 'GitHub' #😺 
       icon: 'fab fa-fw fa-github'
       url: "https://github.com/choimon"
     - label: 'Instagram'
       icon: 'fab fa-fw fa-instagram'
       # url: "https://instagram.com/"
-
+    # - label: 'LinkedIn'
+    #   icon: 'fab fa-fw fa-linkedin' #'fab fa-linkedin-in' 
+    #   url: "https://github.com/choimon"
+    - label: '&nbsp;StackOverflow'
+      icon: 'fab fa-stack-overflow' #'fab fa-fw fa-stack-overflow'
+      url: "https://stackoverflow.com/users/10808879/minjeong-choi"
+    - label: 'Email' #📧
+      icon: 'fas fa-fw fa-envelope-square'
+      url: mailto:sanjosebadger@gmail.com
+    - label: 'Twitter'
+      icon: 'fab fa-fw fa-twitter-square'
+      # url: "https://twitter.com/"
 # Site Footer
 footer:
   links:
     - label: 'Twitter'
       icon: 'fab fa-fw fa-twitter-square'
-      url: "sanjosebadger@gmail.com"
+      #url:
     - label: 'Facebook'
       icon: 'fab fa-fw fa-facebook-square'
       # url:

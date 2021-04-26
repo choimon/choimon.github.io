@@ -94,7 +94,7 @@ analytics:
 # Site Author
 author:
   name: 'Minjeong Choi'
-  avatar: "assets/images/profile_laptop.jpg" # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
+  avatar: {{ 'assets/images/profile_laptop.jpg' | relative_url }} # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
   bio: 'an **avid** learner.'
   location: 'Seoul, Korea'
   email:

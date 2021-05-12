@@ -1,18 +1,17 @@
 ---
-title: 'How to add Latex(MathJax) for Minimal Mistakes Github blog'
-last_modified_at: 2021-05-12T17:47
+title: 'How to use Latex(MathJax) on Minimal Mistakes Github blogs'
+last_modified_at: 2021-05-13T1:47
 categories:
   - blog
 tags:
   - mathjax
   - minimal_mistakes
 toc: true
-toc_max_header: 2
 use_math: true
 ---
 
 ## Summary 
-We'll learn how to render math equations on our Minimal Mistakes blog pages. 
+We'll learn how to add MathJax and render math equations on our Minimal Mistakes Github pages. 
 
 ## What is MathJax?
 > a cross-browser JS library that displays mathematical notation in web browsers, using MathML, LaTeX and ASCIIMathML markup. <cite><a href="https://en.wikipedia.org/wiki/MathJax">Wikipedia</a></cite>
@@ -33,7 +32,7 @@ markdown: kramdown
 ```
 If you're not using Minimal Mistakes, refer to [jekyll's official site](https://jekyllrb.com/docs/configuration/). 
 
-### 2. Add the MathJax script
+### 2. Add a MathJax script
 There are multiple ways to do this. You could add the MathJax script part directly in *_includes/scripts.html*, */_includes/head/custom.html*, or */_includes/footer/custom.html*, but I chose to create a separate html for this extra support.
 
 *_includes/mathjax-custom.html*

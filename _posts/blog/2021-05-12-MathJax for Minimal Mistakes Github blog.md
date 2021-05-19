@@ -63,7 +63,7 @@ There are multiple ways to do this. You could add the MathJax script part direct
 <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
 </script>
 ```
-The first part contains a custom mathjax configuration.According to the MathJax website, the TeX input component doesn't enable single dollar signs as delimiters for in-line math. To enable single dollar signs, you need to explicitly configure it. 
+The first part contains a custom MathJax configuration.According to the MathJax website, the TeX input component doesn't enable single dollar signs as delimiters for in-line math. To enable single dollar signs, you need to explicitly configure it. 
 
 (You might want to get the latest script src from this [site](http://docs.mathjax.org/en/latest/web/start.html))
 
@@ -180,6 +180,14 @@ $$
   \hat{a}_b  \\
   \hat{a}_{b+c} \\
 $$
+
+$$
+    f(n) =
+      \begin{cases}
+      n/2,  & \text{if $n$ is even} \\
+      3n+1, & \text{if $n$ is odd}
+      \end{cases}
+$$
 {% raw %}
 ```
 \\[p(\theta) = \mathbf{\prod}_{i,c}p(\mathbf{\theta}^i(c))\\]
@@ -199,6 +207,14 @@ $$
   \hat{a}_{b}   \\
   \hat{a}_b  \\
   \hat{a}_{b+c} \\
+$$
+
+$$
+    f(n) =
+      \begin{cases}
+      n/2,  & \text{if $n$ is even} \\
+      3n+1, & \text{if $n$ is odd}
+      \end{cases}
 $$
 ```
 {% endraw%}

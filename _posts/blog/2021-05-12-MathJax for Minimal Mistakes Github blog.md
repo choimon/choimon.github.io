@@ -1,6 +1,6 @@
 ---
 title: 'How to use Latex(MathJax) on Minimal Mistakes Github blogs'
-last_modified_at: 2021-05-13T1:47
+last_modified_at: 2021-05-21T20:41
 categories:
   - blog
 tags:
@@ -30,7 +30,8 @@ Set the markdown engine to 'kramdown' in *config.xml*.
 # Conversion
 markdown: kramdown
 ```
-If you're not using Minimal Mistakes, refer to [jekyll's official site](https://jekyllrb.com/docs/configuration/). 
+If you're not using Minimal Mistakes, refer to [jekyll's official site](https://jekyllrb.com/docs/configuration/).
+{: .notice}
 
 ### 2. Add a MathJax script
 There are multiple ways to do this. You could add the MathJax script part directly in *_includes/scripts.html*, */_includes/head/custom.html*, or */_includes/footer/custom.html*, but I chose to create a separate html for this extra support.
@@ -71,7 +72,8 @@ The first part contains a custom MathJax configuration.According to the MathJax 
 
 
 ### 3. Load the MathJax html
-⚠️Note that if you added the script in *_includes/script.html*,  */_includes/head/custom.html*, or */_includes/footer/custom.html*, you can skip this step.
+**Note** You can skip this step if you added the script in *_includes/script.html*,  */_includes/head/custom.html*, or */_includes/footer/custom.html*.
+{: .notice--warning}
 
 
 in *_layouts/default.html*, I added the following at the end: 

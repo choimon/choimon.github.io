@@ -23,10 +23,10 @@ $$\LaTeX$$
 ## How to add MathJax to Minimal Mistakes 
 
 ### 1. Set the markdown engine
-Set the markdown engine to 'kramdown' in *config.xml*. 
+Set the markdown engine to 'kramdown' in `_config.yml`. 
 
-*config.xml*
-```xml
+`_config.yml`
+```yml
 # Conversion
 markdown: kramdown
 ```
@@ -34,9 +34,9 @@ If you're not using Minimal Mistakes, refer to [jekyll's official site](https://
 {: .notice}
 
 ### 2. Add a MathJax script
-There are multiple ways to do this. You could add the MathJax script part directly in *_includes/scripts.html*, */_includes/head/custom.html*, or */_includes/footer/custom.html*, but I chose to create a separate html for this extra support.
+There are multiple ways to do this. You could add the MathJax script part directly in `_includes/scripts.html`, `/_includes/head/custom.html`, or `/_includes/footer/custom.html`, but I chose to create a separate html for this extra support.
 
-*_includes/mathjax-custom.html*
+`_includes/mathjax-custom.html`
 ```html
 
 <script type="text/x-mathjax-config">
@@ -72,11 +72,11 @@ The first part contains a custom MathJax configuration.According to the MathJax 
 
 
 ### 3. Load the MathJax html
-**Note** You can skip this step if you added the script in *_includes/script.html*,  */_includes/head/custom.html*, or */_includes/footer/custom.html*.
+**Note** You can skip this step if you added the script in `_includes/script.html`,  `/_includes/head/custom.html`, or `/_includes/footer/custom.html`.
 {: .notice--warning}
 
 
-in *_layouts/default.html*, I added the following at the end: 
+in `_layouts/default.html`, I added the following at the end: 
 
 {% raw %}
 ```html
@@ -144,7 +144,7 @@ so my default.html would look like this:
 
 - Any page using this layout will be able to use MathJax to render math equations. 
 - I added a conditional to avoid embedding the script on pages that don't need math equations.
-- I also found some people adding this part in *_includes/head.html*
+- I also found some people adding this part in `_includes/head.html`
 
 
 

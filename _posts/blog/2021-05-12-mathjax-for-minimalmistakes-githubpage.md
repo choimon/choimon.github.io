@@ -2,7 +2,7 @@
 title: 'How to use Latex(MathJax) on Minimal Mistakes Github blogs'
 last_modified_at: 2021-05-21T20:41
 categories:
-  - blog
+  - Blog
 tags:
   - mathjax
   - minimal_mistakes

@@ -1,0 +1,22 @@
+/* ==========================================================================
+   Choi skin
+   ========================================================================== */
+
+/* Colors */
+$whitish-green: #f1f7eb;
+$light-green: #9bbd58; 
+$green: #7bac74;
+$olive-green: #94ac74;
+$dark-green: #749e6c;
+
+
+$footer-background-color: $whitish-green !default;
+$link-color: $light-green !default;  
+
+/* toc setting _navigation.scss*/
+$toc-nav-title-color: $olive-green !default;
+$toc-nav-active-color: mix(#fff, $olive-green, 80%) !default;
+
+.page__title{
+    color: $dark-green;
+}

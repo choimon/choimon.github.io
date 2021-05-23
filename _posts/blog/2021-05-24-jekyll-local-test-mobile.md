@@ -1,5 +1,5 @@
 ---
-title: '제킬 블로그 로컬 개발시 모바일에서 확인하는 법'
+title: '로컬 제킬 깃헙 블로그 모바일에서 확인하는 법'
 last_modified_at: 2021-05-24T01:24
 categories:
   - Blog

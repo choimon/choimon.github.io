@@ -156,7 +156,8 @@ $toc-nav-active-color: mix(#fff, $olive-green, 80%) !default;
 ```
 
 기존에 있는 스킨 scss파일들을 둘러보면서 설정해줬습니다. 
-중간에 있는 `$toc-nav-title-color` 나 `$toc-nav-active-color`는 포스트에서 보여주는 오른쪽 목차(toc) 관련 설정입니다. 제가 만든 변수이기 때문에 이 variable을 사용하게 되는 `_navigation.scss`에도 따로 설정해줬습니다. 
+
+중간에 있는 `$toc-nav-title-color` 나 `$toc-nav-active-color`는 포스트에서 보여주는 오른쪽 목차(toc) 관련 설정입니다. 제가 만든 변수이기 때문에 이 variable을 사용하게 되는 `_navigation.scss`에도 따로 설정해줬습니다.(이 변수들을 만들지 않고 `_navigation.scss`에서 바로 색상을 넣어주셔도 됩니다) 
 
 `_sass/minimal-mistakes/_navigation.scss`
 ```scss
@@ -165,7 +166,6 @@ $toc-nav-active-color: mix(#fff, $olive-green, 80%) !default;
      ========================================================================== */
 
 .toc {
-  font-family: $sans-serif-narrow;
   ...
 
   .nav__title {
@@ -183,6 +183,24 @@ $toc-nav-active-color: mix(#fff, $olive-green, 80%) !default;
 ```
 
 기존에는 `$primary-color` 와 `$active-color` 를 사용해서 넣어줬던 toc 색상을 변경시켜줬습니다.  `$primary color` 자체를 `_choi.scss`에 바꿀 수 있었지만, 이 변수는 다른 곳에서(우상단 메뉴, 인용문 등) 많이 쓰이기 때문에 따로 만들어 넣어줬습니다.
+
+
+`$toc-nav-title-color`와 `$toc-nav-active-color` 제가 따로 추가한 변수들이기 때문에, `_choi.scss` 를 사용하지 않는 다른 테마 스킨일 경우 없는 변수라는 build error 가 일어납니다. 다른테마에서도 쓸 수 있도록 해당 변수들을 등록해 줍니다.  
+
+`_sass/minimal-mistakes/_variable.scss`
+```scss
+/*
+   Colors
+   ========================================================================== */
+
+....
+/* brands */
+...
+
+/* choi colors */
+$toc-nav-title-color: $primary-color !default;
+$toc-nav-active-color: $active-color !default;
+```
 
 
 커스텀 scss 스킨을 만들고 설정을 까먹으면 안 되겠죠?

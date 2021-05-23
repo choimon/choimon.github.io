@@ -112,8 +112,8 @@ $xing-color: #006567 !default;
 
 
 /* choi colors */
-$toc-nav-title-color: $primary-color;
-$toc-nav-active-color: $active-color;
+$toc-nav-title-color: $primary-color !default;
+$toc-nav-active-color: $active-color !default;
 
 /* links */
 $link-color: mix(#000, $info-color, 20%) !default;

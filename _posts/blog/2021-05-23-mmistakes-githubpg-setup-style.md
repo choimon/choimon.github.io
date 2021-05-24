@@ -79,7 +79,7 @@ defaults:
 {% endhighlight %}
 
 이렇게 설정하면 올리는 모든 포스트가 제목 아래 날짜를 가지게 됩니다. 
-![show_date]({{"/assets/images/posts/20210522_blog_date.png"| relative_url}})
+![mmistakes post date shown]({{"/assets/images/posts/20210523_blog_date.png"| relative_url}})
 {: left-align}
 
 혹시, 특정 몇 개의 포스트만 날짜를 보여주고 싶으시다면, 

@@ -57,7 +57,7 @@ bundle exec jekyll serve --livereload
   - 저는 제킬 기본 포트 4000을 사용해서 `http://172.30.1.41:4000/`으로 접속했습니다 
 
 
-<img src='{{"/assets/images/posts/20210524_jekyll_mobile.png"| relative_url}}' alt='WIS 2021' style="width: 50%;" class="align-center">
+<img src='{{"/assets/images/posts/20210524_jekyll_mobile.png"| relative_url}}' alt='jekyll on mobile' style="width: 50%;" class="align-center">
 
 
 혹시 똑같이 따라 해도 모바일 기계에서 접속이 안 된다면 컴퓨터 방화벽에서 제킬이 사용하고 있는 포트(4000)로 inbound 접속을 허용하는지 확인해보세요. 이 외에도 보안 관련 설정 때문에 안될 수도 있습니다.

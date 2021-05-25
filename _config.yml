@@ -100,9 +100,9 @@ author:
   email:
   links:
     
-    - label: 'Website' #🔗
-      icon: 'fas fa-fw fa-link'
-      url: "https://www.minjeongchoi.com"
+    # - label: 'Website' #🔗
+    #   icon: 'fas fa-fw fa-link'
+    #   url: "https://www.minjeongchoi.com"
     
     - label: 'GitHub' #😺 
       icon: 'fab fa-fw fa-github'

@@ -111,9 +111,11 @@ $youtube-color: #bb0000 !default;
 $xing-color: #006567 !default;
 
 
-/* choi colors */
+/* (choi) default colors for added variables */
 $toc-nav-title-color: $primary-color !default;
 $toc-nav-active-color: $active-color !default;
+
+$nav-menu-item-underline-color: $primary-color !default; 
 
 /* links */
 $link-color: mix(#000, $info-color, 20%) !default;

@@ -3,19 +3,24 @@
    ========================================================================== */
 
 /* Colors */
-$whitish-green: #f1f7eb;
-$light-green: #9bbd58; 
-$green: #7bac74;
-$olive-green: #94ac74;
-$dark-green: #749e6c;
+$lightest-green:#dfedc8;
+$light-green:#85be62;
+$green: #70b248;
+$dark-green: #5d9f36;
+// $darkest-green:#2c4d1a;
 
 
-$footer-background-color: $whitish-green !default;
-$link-color: $light-green !default;  
+/* Settings */
+$link-color: $light-green !default; 
+$footer-background-color: $lightest-green !default;
 
-/* toc setting _navigation.scss*/
-$toc-nav-title-color: $olive-green !default;
-$toc-nav-active-color: mix(#fff, $olive-green, 80%) !default;
+/* TOC setting */
+$toc-nav-title-color: $light-green;
+$toc-nav-active-color: mix(#fff, $light-green, 80%);
+
+/* navigation menu */
+$nav-menu-item-underline-color: $lightest-green;
+
 
 .page__title{
     color: $dark-green;

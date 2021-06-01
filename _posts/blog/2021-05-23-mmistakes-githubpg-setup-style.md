@@ -1,6 +1,6 @@
 ---
 title: '깃헙 블로그 설정 - 스타일'
-last_modified_at: 2021-05-23T10:33
+last_modified_at: 2021-06-02T00:16
 categories:
   - Blog
 tags:
@@ -123,11 +123,13 @@ a {
 
 
 ## 블로그 색상 변경하기
-mmistakes 는 기본 말고도 air, contrast 등 여러 스킨을 제공합니다. 
-제공되는 스킨 말고 나만의 스킨을 만들어서 적용해볼 수 있습니다.
+mmistakes 는 기본 스킨 말고도 air, contrast 등 여러 스킨을 제공합니다. 
+제공되는 스킨 말고 나만의 스킨을 만들어서 적용해 보겠습니다.
 
+
+### 커스텀 스킨
 저는 기본 스킨에 꽤 만족하지만, 포스트 제목이 파란색인 건 참을 수 없었습니다. 
-지금 제 블로그 테마는 그린그린이기 때문입니다. 스킨 파일을 `_sass/minimal-mistakes/skins` 폴더에 만들어 보겠습니다. 저는 `_choi.scss`라고 만들었지만, 원하시는 스킨 이름을 붙여주세요. choi라고 따라하셔도 됩니다.
+지금 제 블로그 테마는 그린그린이기 때문입니다. 스킨 파일을 `_sass/minimal-mistakes/skins` 폴더에 만들어 보겠습니다. 저는 `_choi.scss`라고 만들었지만, 원하시는 스킨 이름을 붙여주세요. choi라고 따라 하셔도 됩니다.😀
 
 `_sass/minimal-mistakes/skins/_choi.scss`
 ```scss
@@ -136,28 +138,38 @@ mmistakes 는 기본 말고도 air, contrast 등 여러 스킨을 제공합니�
    ========================================================================== */
 
 /* Colors */
-$whitish-green: #f1f7eb;
-$light-green: #9bbd58; 
-$green: #7bac74;
-$olive-green: #94ac74;
-$dark-green: #6f9e66;
+$lightest-green:#dfedc8;
+$light-green:#85be62;
+$green: #70b248;
+$dark-green: #5d9f36;
 
+/* Settings */
+$footer-background-color: $lightest-green !default; // footer 마지막 배경색
 $link-color: $light-green !default;  // 링크 색깔, 글 리스트 제목 링크 
-$footer-background-color: $whitish-green !default; 
 
+/* TOC setting */
+$toc-nav-title-color: $light-green;
+$toc-nav-active-color: mix(#fff, $light-green, 80%);
 
-/* toc setting _navigation.scss*/
-$toc-nav-title-color: $olive-green !default;
-$toc-nav-active-color: mix(#fff, $olive-green, 80%) !default;
+/* navigation menu */
+$nav-menu-item-underline-color: $lightest-green;
+
 
 .page__title{
-    color: $dark-green;
+    color: $dark-green;  // 포스트 제목 색
 }
 ```
 
 기존에 있는 스킨 scss파일들을 둘러보면서 설정해줬습니다. 
 
-중간에 있는 `$toc-nav-title-color` 나 `$toc-nav-active-color`는 포스트에서 보여주는 오른쪽 목차(toc) 관련 설정입니다. 제가 만든 변수이기 때문에 이 variable을 사용하게 되는 `_navigation.scss`에도 따로 설정해줬습니다.(이 변수들을 만들지 않고 `_navigation.scss`에서 바로 색상을 넣어주셔도 됩니다) 
+중간에 나오는 `$toc-nav-title-color`, `$toc-nav-active-color`, `$nav-menu-item-underline-color` 변수들은 TOC나 상단 네비게이션 메뉴 아이템 설정을 위해 제가 따로 만든 변수들입니다. 이와 같은 설정을 원하신다면 밑에 [TOC 색상 설정](#toc-색상-바꾸기)과 [메뉴 아이템 언더라인 색상 설정](#메뉴-아이템-언더바-색상-바꾸기)
+ 섹션을 순서대로 완료하시면 됩니다.
+
+TOC나 메뉴아이템 설정을 원치 않으시다면 해당 변수들이 들어간 라인을 지우시고 바로 [커스텀 스킨을 설정](#커스텀-스킨-설정하기)하러 가시면 됩니다.
+
+
+### TOC 색상 바꾸기
+제 [커스텀 스킨](#커스텀-스킨)에 나오는 `$toc-nav-title-color` 나 `$toc-nav-active-color`는 포스트에서 선택적으로 보여주는 오른쪽 목차(toc) 관련 설정입니다. 제가 만든 변수이기 때문에 이 변수들을 사용하게 되는 `_navigation.scss`에도 따로 설정해줬습니다. (이 변수들을 만들지 않고 `_navigation.scss`에서 바로 변수들이 가지는 색상을 넣어주셔도 됩니다).
 
 `_sass/minimal-mistakes/_navigation.scss`
 ```scss
@@ -182,10 +194,42 @@ $toc-nav-active-color: mix(#fff, $olive-green, 80%) !default;
 
 ```
 
-기존에는 `$primary-color` 와 `$active-color` 를 사용해서 넣어줬던 toc 색상을 변경시켜줬습니다.  `$primary color` 자체를 `_choi.scss`에 바꿀 수 있었지만, 이 변수는 다른 곳에서(우상단 메뉴, 인용문 등) 많이 쓰이기 때문에 따로 만들어 넣어줬습니다.
+기존에는 `$primary-color`와 `$active-color`를 사용해서 넣어줬던 toc 색상을 변경시켜줬습니다.  `$primary-color` 자체를 `_choi.scss`에 바꿀 수 있었지만, 이 변수는 다른 곳에서(우상단 메뉴, 인용문 등) 많이 쓰이기 때문에 따로 만들어 넣어줬습니다.
+
+만들어진 변수들을 다른 스킨에도 무리 없이 사용할 수 있도록 [커스텀 변수](#커스텀-변수-세팅하기)들을 등록시켜주셔야 합니다. 
 
 
-`$toc-nav-title-color`와 `$toc-nav-active-color` 제가 따로 추가한 변수들이기 때문에, `_choi.scss` 를 사용하지 않는 다른 테마 스킨일 경우 없는 변수라는 build error 가 일어납니다. 다른테마에서도 쓸 수 있도록 해당 변수들을 등록해 줍니다.  
+### 메뉴 아이템 언더바 색상 바꾸기
+
+상단 네비게이션 메뉴 아이템에 마우스를 갖다 대면 밑줄이 생깁니다. 진회색인 밑줄 색상을 제가 원하는 연한 연두색으로 바꿔보겠습니다. 
+![navigation menu item's highlight color changed]({{"/assets/images/posts/20210602_navmenu_style.png"| relative_url}})
+
+제 [커스텀 스킨](#커스텀-스킨)에 나오는 `$nav-menu-item-underline-color`을 실제 메뉴 아이템 언더라인 색상을 반영하는 곳에 넣어보겠습니다.
+
+`_navigation.scss`
+```scss
+.greedy-nav {
+  ...
+  .visible-links {
+    ...
+    a {
+      &:before {
+        ...
+        background: $nav-menu-item-underline-color;
+        ...
+      }
+    }
+  }
+
+}
+```
+이 색상은 원래 `$primary-color`를 사용하지만, 이 변수가 다른 곳에서(우상단 메뉴, 인용문 등)도 많이 쓰이기 때문에 이 색상을 바꾸는 대신에 따로 만들어 주었습니다. 
+
+만들어진 변수를 다른 스킨에도 무리 없이 사용할 수 있도록 [커스텀 변수](#커스텀-변수-세팅하기)들을 등록시켜주셔야 합니다. 
+
+### 커스텀 변수 세팅하기
+
+`$toc-nav-title-color`,`$toc-nav-active-color`,`$nav-menu-item-underline-color` 이 변수들은 제가 따로 추가한 변수들이기 때문에, `_choi.scss` 를 사용하지 않는 다른 테마 스킨일 경우 없는 변수라는 build error 가 일어납니다. 다른 테마에서도 고치지 않고 쓸 수 있도록 해당 변수들의 디폴트 값들을 등록해 줍니다.  
 
 `_sass/minimal-mistakes/_variable.scss`
 ```scss
@@ -197,11 +241,16 @@ $toc-nav-active-color: mix(#fff, $olive-green, 80%) !default;
 /* brands */
 ...
 
-/* choi colors */
+
+/* (choi) default colors for added variables */
 $toc-nav-title-color: $primary-color !default;
 $toc-nav-active-color: $active-color !default;
+$nav-menu-item-underline-color: $primary-color !default; 
+
 ```
 
+
+### 커스텀 스킨 설정하기
 
 커스텀 scss 스킨을 만들고 설정을 까먹으면 안 되겠죠?
 `_config.yml` 에 스킨 이름을 넣어주세요! 
@@ -217,5 +266,4 @@ minimal_mistakes_skin: 'choi'
 
 ## References
 1. [취미로 코딩하는 개발자 블로그](https://devinlife.com/howto%20github%20pages/github-pages-settings/)
-
 2. [Danggai 블로그](https://danggai.github.io/github.io/Github.io-%EC%A0%9C%EB%AA%A9,-%EB%A7%81%ED%81%AC,-%EA%B0%95%EC%A1%B0%EC%83%89-%EB%B0%94%EA%BE%B8%EA%B8%B0/)

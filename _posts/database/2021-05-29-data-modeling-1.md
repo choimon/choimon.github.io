@@ -1,6 +1,6 @@
 ---
 title: '데이터 모델링(1)'
-last_modified_at: 2021-06-20:06
+last_modified_at: 2021-06-04T20:06
 categories:
   - Database
 tags:

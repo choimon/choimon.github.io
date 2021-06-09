@@ -1,6 +1,6 @@
 ---
 title: '깃헙 블로그 설정 - 스타일'
-last_modified_at: 2021-06-02T00:16
+last_modified_at: 2021-06-09T23:14
 categories:
   - Blog
 tags:
@@ -55,6 +55,49 @@ toc_sticky: true
     <!-- end custom head snippets -->
     ```
 
+## 글자 크기 수정 
+
+mmistakes는 scss의 breakpoint기능을 사용해서, 접속 기기 화면 크기에 따라 폰트사이즈를 변경해준다. 
+
+기본테마에 적용된 큰 화면(1024px, $large 이상) 폰트사이즈가 내 기준에 너무 커서 크기를 수정했다. 
+
+`_sass/minimal-mistakes/_reset.scss`
+```scss
+
+html {
+  font-size: 16px;
+
+  @include breakpoint($medium) {
+    font-size: 18px;
+  }
+
+  @include breakpoint($large) {
+    font-size: 19px; /*여기*/
+  }
+
+  @include breakpoint($x-large) {
+    font-size: 19px;  /*여기*/
+  }
+
+}
+
+```
+
+참고로 `$large`와 `$x-large`는 `_variable.scss`에 정의되어 있다. 
+
+`_variable.scss`
+```scss
+/*
+   Breakpoints
+   ========================================================================== */
+
+$small: 600px !default;
+$medium: 768px !default;
+$medium-wide: 900px !default;
+$large: 1024px !default;
+$x-large: 1280px !default;
+$max-width: $x-large !default;
+```
 
 ## 포스트 제목 아래 날짜 표시 
 기본 mmistakes 테마에선 포스트 제목 아래 읽는데 예상되는 시간(read time)만 보여줍니다. 작성된 날짜는 포스트 맨 아래로 내려야 보입니다. 제목 바로 아래 날짜를 보여주기 위한 세팅은 이미 몇몇 블로그 포스트에 설명되어있었습니다. 기존 글보다 간편한 방법을 찾았습니다. 
@@ -267,3 +310,4 @@ minimal_mistakes_skin: 'choi'
 ## References
 1. [취미로 코딩하는 개발자 블로그](https://devinlife.com/howto%20github%20pages/github-pages-settings/)
 2. [Danggai 블로그](https://danggai.github.io/github.io/Github.io-%EC%A0%9C%EB%AA%A9,-%EB%A7%81%ED%81%AC,-%EA%B0%95%EC%A1%B0%EC%83%89-%EB%B0%94%EA%BE%B8%EA%B8%B0/)
+3. [mmistakes github](https:ㅑ

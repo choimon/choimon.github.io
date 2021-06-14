@@ -137,8 +137,9 @@ toc_sticky: true
 - 예) 웹 서버는 대표적인 멀티 스레드 응용 프로그램이다.
 
 **장점 (+)**
-- 시스템 자원 소모 감소 (자원의 효율성 증대)
+- 메모리 공간 등 시스템 자원 소모 감소 (자원의 효율성 증대)
   - 프로세스를 생성하여 자원을 할당하는 시스템 콜이 줄어들어 자원을 효율적으로 관리할 수 있다.
+  - 스레드 간 통신에 별도의 자원이 아닌 전역 변수의 공간 또는 동적으로 할당된 공간인 Heap영역을 이용하여 데이터를 주고 받는다.
 - 시스템 처리량 증가 (처리 비용 감소)
   -  스레드 간 데이터를 주고받는 것이 간단해지고 시스템 자원 소모가 줄어들게 된다.
   - 스레드 사이의 작업량이 적어 Context Switching이 빠르다.
@@ -167,7 +168,7 @@ toc_sticky: true
   - 프로세스 간의 전환 속도보다 스레드 간의 전환 속도가 빠르다.
 - 다만, 동기화 문제, 스레드 간의 자원 공유로 인한 충돌 (데이터 세그먼트 내 전역변수)등의 문제가 일어날 수 있기 때문에 주의해서 써야 된다 .
 
-# Reference 
+# References
 [^fn1]:[java concept of the day](https://javaconceptoftheday.com/differences-between-program-vs-process-vs-threads/){:target="_blank"}
 [^fn2]: [webhostinghero: Linux executable files](https://webhostinghero.org/which-are-the-linux-executable-files-and-how-do-we-create-them/){:target="_blank"}
 

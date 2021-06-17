@@ -94,7 +94,21 @@ CPU 스케줄링은 다음과 같은 상황에 발생할 수 있다:
 - CPU를 사용 중인 프로세스가 자율적으로 반납한다. 
 - 프로세스가 자율적으로 CPU를 반납하는 시점에서 사용한다. 
 - 스케줄링 알고리즘 
-  - FCFS, SJF
+  - FCFS, SJF, Priority Scheduling
+
+### 선점 스케줄링(Preemptive Scheduling)
+- 낮은 우선순위를 가진 프로세스보다 높은 우선순위를 가진 프로세스가 CPU를 선점한다. 
+- 운영체제가 알고리즘에 따라 적당한 프로세스에 CPU를 할당하고, 필요할 때 회수한다. 
+- I/O-bound 프로세스는 CPU-bound 프로세스보다 높은 우선순위에 있어야 한다. 
+- Time slice의 양은 CPU 버스트 시간보다 조금만 더 많아야 한다. 
+  - Time slice가 더 적을 경우, 불필요한 context switch 가 많이 일어난다. 
+  - 반대로, time slice가 더 클 경우에는, I/O가 일어날 때에 CPU를 반납하거나, 다른 프로세스는 CPU에 굶주리는 현상이 일어날 수 있다.
+- Real time 프로세스는 다른 프로세스에 비해 매우 높은 우선순위를 갖는다. 
+
+- 스케줄링 알고리즘 
+  - SRT, RR, Priority Scheduling
+
+
 
 #### FCFS(First Come First Served)
 - 먼저 CPU를 요처하는 프로세스를 먼저 처리한다.[^fn4]
@@ -105,14 +119,28 @@ CPU 스케줄링은 다음과 같은 상황에 발생할 수 있다:
 - 평균 waiting time을 최소하 하기 위해 사용된다. 
 - 버스트 시간이 긴 프로세스는 오랜 시간 기다려야되서, No Starvation 룰을 위반한다. 
 
-### 선점 스케줄링(Preemptive Scheduling)
-- 낮은 우선순위를 가진 프로세스보다 높은 우선순위를 가진 프로세스가 CPU를 선점한다. 
-- 운영체제가 알고리즘에 따라 적당한 프로세스에 CPU를 할당하고, 필요할 때 회수한다. 
-- 스케줄링 알고리즘 
-  - SRT, RR, Priority Scheduling
 
+#### SRT(Shortest Remaining Time)
+ - 최단 잔여시간을 우선시 한다.  
+ - 진행 중인 프로세스가 있어도, 최단 잔여시간인 프로세스를 위해 sleep 시키고 짧은 프로세스를 먼저 할당한다.
+ 
+#### RR(Round Robin)
+- Time Sharing System을 위해 설계되었다. 
+- 모든 프로세스가 같은 우선순위를 가지며, time slice 기반으로 스케줄링한다. 
+- Time slice burst 가 일어나면 해당 프로세스는 스케줄링 큐의 끝으로 이동한다. 
+- 알고리즘의 성능은 Time slice 크기와 같아진다. 
+- Time slice 가 크면 FCFS와 다를게 없다. 
+- Time slice 가 작다면 불필요한 context switch가 많이 일어난다.  
 
-
+#### Priority Scheduling(우선 순위 스케줄링)
+- 우선 순위가 높은 프로세스에 CPU를 우선 할당한다. 
+- 우선 순위는 시간 제한, 메모리 요구량, 프로세스의 중요성, 자원사용 비용 등에 따라 달라진다. 
+- 우선 순위가 같을 경우, FCFS와 같다. 
+- 선점, 비선점 둘다 사용한다. 
+- 선점형 방식 
+  - 더 높은 우선순위의 프로세스가 도착하면 실행중인 프로세스를 멈추고 CPU 를 선점한다. 
+- 비선점 방식 
+  - 더 높은 우선순위의 프로세스가 도착하면 Ready Queue 의 Head 에 넣는다
 
 # References
 [^fn1]: [wikipedia](https://en.wikipedia.org/wiki/Scheduling_(computing)){:target="_blank"}

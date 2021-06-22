@@ -24,7 +24,9 @@ toc_sticky: true
 
 # 2세대(The Second Generation): 1955-1965
 첫 운영체제는 1950년대 초기에 나왔다. GMOS라고 불렸으며, General Motors 회사에서 IBM 701 머신을 위해 만들었다. 
-1950년대 운영체제는 단일 스트림 일괄 처리 시스템(single-stream batch processing system)이라고 불리었다. 데이터가 그룹으로 보내졌기 때문이다. 이때 만들어진 기계들은 메인프레임(mainframe)이라는 이름을 얻었고, 큰 컴퓨터 방에서 전문 오퍼레이터들이 사용했다. 이때 기계들이 무척 비쌌기 때문에, 큰회사나 정부 단체에서만 사용할 수 있었다. 
+1950년대 운영체제는 단일 스트림 일괄 처리 시스템(single-stream batch processing system)이라고 불리었다. 비슷한 잡(job)들이 그룹(groups/batches)핑 되어 운영체제로 보내졌다. 운영체제는 펀치카드(punch card)
+
+이후 만들어진 기계들은 메인프레임(mainframe)이라고 불렸고, 큰 컴퓨터 방에서 전문 오퍼레이터들이 사용했다. 이때 기계들이 무척 비쌌기 때문에, 큰회사나 정부 단체에서만 사용할 수 있었다. 
 
 ## Batch processing system(일괄 처리 시스템)
 과거에는 오퍼레이터가 직접 프로그램을 수행할 때마다 컴파일,링크,로딩 순서를 입력해야 했었는데, 이 작업을 자동화 한것이 일괄 처리 시스템이다. 
@@ -52,8 +54,7 @@ toc_sticky: true
 위와 같은 문제들은 운영체제의 중요한 역할들이다. 
 
 ## Time-sharing system(시분할 시스템)
-이 세대에 만들어졌는지 추후 확인이 필요합니다
-{: .notice}
+
 
 ### 탄생배경
 모니터와 키보드를 사용하게 되면서 사용자와 컴퓨터 사이에 대화 형식이 가능해졌다. 
@@ -62,9 +63,12 @@ toc_sticky: true
 각 사용자들은 모니터와 키보드만을 가지지만, 실제 프로세서는 하나의 단말기에 존재해서 이를 공유하여 사용했다. 이와 같은 단말기 형태에서 다중 프로그래밍은 문제가 생긴다. 
 예)사용자 1,2,3이 있고 단말기 메모리에 user1 프로그램, user2 프로그램, user3 프로그램이 할당 되어있다. CPU는 하나다. 다중프로그래밍에서는 user1이 CPU를 수행하고 있는 도중에 다른 사용자는 CPU를 사용할 수 없다. 다른 사용자들은 user1이 CPU수행을 모두 마치거나 I/O를 마칠 때까지 기다려야 한다. 매우 비효율적이다. 이를 해결하기 위해 나온 것이 시분할 시스템이다 
 
+첫 시분할 시스템 개념은 1954년에 John Backus가 MIT 여름 세션에서 언급했다고 전해진다. 1959년에 MIT의 John McCarthy의 첫 시분할 시스템 프로젝트 시작으로, 1960-1970년대에는 메인프레임 컴퓨터에 개발되었다. 1980년대 초반 마이크로컴퓨팅의 인기 상승으로 시분할 시스템은 상대적으로 주목받지 못했지만, 인터넷으로 다시 시분할 개념이 주목받았다. 하지만 이후 저렴해진 가격으로 개인컴퓨터(personal computer)가 들어서면서 시분할 시스템은 인기가 줄어들기 시작했다.[^fn3]
+{: .notice}
+
 ### 동작 
-시분할 시스템은 CPU가 하나의 프로그램을 수행하는 시간을 제한한다. \
-예) user1 프로그램이 일정 시간 수행하면 끝내지 못했더라도 반드시 다음 프로그램으로 넘어가서(switching) 또 다시 일정 시간을 수행한다. 모든 프로그램이 일정 시간을 공평하게 수행하게 한다. 
+시분할 시스템은 CPU가 하나의 프로그램을 수행하는 시간을 제한하여 여러 사용자나 여러 작업이 시간 단위로 공유/분할하여 사용한다.
+- 예) user1 프로그램이 일정 시간 수행하면 끝내지 못했더라도 반드시 다음 프로그램으로 넘어가서(switching) 또 다시 일정 시간을 수행한다. 모든 프로그램이 일정 시간을 공평하게 수행하게 한다. 
 이 일정 시간은 매우 짧은 시간(ms)이여서 CPU가 하나인 환경에서도 여러 사용자가 동시에 사용하는 듯한 효과를 가질 수 있다. 
 
 시분할 시스템을 사용하면서 여러 사용자(프로세스)간에 통신이 가능해졌다. 
@@ -124,5 +128,10 @@ CPU에게 보내는 전기 신호다.
 [^fn1]: [optsytms](https://sites.google.com/site/optsytms/history-of-operating-systems){:target="_blank"}
 
 [^fn2]: [codemcd님 velog](https://velog.io/@codemcd/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9COS-2.-%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C-%EC%97%AD%EC%82%AC){:target="_blank"}
-[^fn3]: [javatpoint](https://www.javatpoint.com/history-of-operating-system){:target="_blank"}
+[^fn3]: [wikipedia](https://en.wikipedia.org/wiki/Time-sharing#Development){:target="_blank"}
+
+[^fn4]: [javatpoint](https://www.javatpoint.com/history-of-operating-system){:target="_blank"}
+
+
+
 

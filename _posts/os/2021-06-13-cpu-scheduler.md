@@ -9,7 +9,7 @@ toc: true
 toc_sticky: true
 ---
 # Summary 
-CPU 스케줄링에 대해 알아봅니다.[^fn1]
+CPU 스케줄링에 대해 알아본다.[^fn1]
 
 # CPU 스케줄링
 

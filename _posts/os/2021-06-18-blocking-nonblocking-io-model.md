@@ -70,7 +70,7 @@ blocking: 어떤 이벤트가 끝날 때까지 기다린다.
 
 ### Asynchronous vs Non-blocking 
 - System call이 즉시 return 될 때 데이터의 포함 유무 
-- Asyncrhonous는 요청에 처리 완료와 관계없이 응답한다. 이후 운영체제에서 응답할 준비가 되면 응답한다. 
+- Asynchronous는 요청에 처리 완료와 관계없이 응답한다. 이후 운영체제에서 응답할 준비가 되면 응답한다. 
 - Non-blocking은 요청에 처리할 수 있으면 바로 응답하고 아니면 Error를 반환한다. 
 
 

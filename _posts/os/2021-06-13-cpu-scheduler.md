@@ -7,6 +7,7 @@ tags:
   - cpu scheduler
 toc: true
 toc_sticky: true
+use_math: true
 ---
 # Summary 
 CPU 스케줄링에 대해 알아본다.[^fn1]
@@ -96,11 +97,102 @@ CPU 스케줄링은 다음과 같은 상황에 발생할 수 있다:
 - 스케줄링 알고리즘 
   - FCFS, SJF, Priority Scheduling
 
+
+
+#### FCFS(First Come First Served)
+- 먼저 CPU를 요청하는 프로세스를 먼저 처리한다.[^fn3]
+- 예) P1, P2, P3 순으로 프로세스가 CPU를 요청하면, P1,P2,P3 순으로 실행된다. 
+
+  | Process | Burst Time | Waiting Time |  Turnaround Time | 
+  |:--------|:----------:|:------------:|:----------------:|
+  | P1      |      15    |       0      |         15       | 
+  | P2      |       5    |       15     |         20       | 
+  |--------------------------------------------------------|
+  | P3      |       3    |      20      |         23       | 
+
+
+  <figure>
+    <div class="chart">
+      <span class="block category-a" style="width: 65%">
+          <span class="value">P1<br>
+            <span class="duration">15</span>
+          </span>
+      </span>
+      <span class="block category-b" style="width: 22%">
+          <span class="value">P2<br>
+            <span class="duration">&nbsp;5</span>
+          </span>
+      </span>
+      <span class="block category-c" style="width: 13%">
+          <span class="value">P3<br>
+            <span class="duration">&nbsp;3</span>
+          </span>
+      </span>
+    </div>
+  </figure>
+
+- Average waiting time: $\frac{(0 + 15 + 20)}{3} \approx 11.67$ 
+- 만약 P3, P2, P1 순으로 요청하면, P3, P2, P1 순으로 실행된다. 
+  <figure>
+    <div class="chart">
+      <span class="block category-c" style="width: 13%">
+          <span class="value">P3</span>
+      </span>
+      <span class="block category-b" style="width: 22%">
+          <span class="value">P2</span>
+      </span>
+      <span class="block category-a" style="width: 65%">
+          <span class="value">P1</span>
+      </span>
+    </div>
+  </figure>
+- Average waiting time: $\frac{(0 + 3 + 8)}{3} \approx 3.67$ 
+
+#### SJF(Shortest Job First)
+- 버스트 시간(burst time)이 짧은 프로세스부터 CPU를 할당한다. 
+- 평균 waiting time을 최소하 하기 위해 사용된다. 
+- 버스트 시간이 긴 프로세스는 오랜 시간 기다려야되서, No Starvation 룰을 위반한다. 
+
+  | Process | Burst Time | Waiting Time |  Turnaround Time | 
+  |:--------|:----------:|:------------:|:----------------:|
+  | P1      |      6     |       3      |         9        | 
+  | P2      |      3     |       0      |         3        | 
+  |--------------------------------------------------------|
+  | P3      |      8    |      16       |         24       | 
+  | P4      |      7    |      9        |         16       | 
+
+  <figure>
+    <div class="chart">
+      <span class="block category-b" style="width: 12.5%">
+          <span class="value">P2<br>
+            <span class="duration">&nbsp;3</span>
+          </span>
+      </span>
+      <span class="block category-a" style="width: 25%">
+          <span class="value">P1<br>
+            <span class="duration">&nbsp;6</span>
+          </span>
+      </span>
+      <span class="block category-d" style="width: 29%">
+          <span class="value">P4<br>
+            <span class="duration">&nbsp;7</span>
+          </span>
+      </span>
+      <span class="block category-c" style="width: 33.5%">
+          <span class="value">P3<br>
+            <span class="duration">&nbsp;8</span>
+          </span>
+      </span>
+    </div>
+  </figure>
+
+
+
 ### 선점 스케줄링(Preemptive Scheduling)
 - 낮은 우선순위를 가진 프로세스보다 높은 우선순위를 가진 프로세스가 CPU를 선점한다. 
 - 운영체제가 알고리즘에 따라 적당한 프로세스에 CPU를 할당하고, 필요할 때 회수한다. 
 - I/O-bound 프로세스는 CPU-bound 프로세스보다 높은 우선순위에 있어야 한다. 
-- Time slice의 양은 CPU 버스트 시간보다 조금만 더 많아야 한다. 
+- Time slice의 양은 CPU 버스트 시간(burst time, execution time)보다 조금만 더 많아야 한다. 
   - Time slice가 더 적을 경우, 불필요한 context switch 가 많이 일어난다. 
   - 반대로, time slice가 더 클 경우에는, I/O가 일어날 때에 CPU를 반납하거나, 다른 프로세스는 CPU에 굶주리는 현상이 일어날 수 있다.
 - Real time 프로세스는 다른 프로세스에 비해 매우 높은 우선순위를 갖는다. 
@@ -109,21 +201,56 @@ CPU 스케줄링은 다음과 같은 상황에 발생할 수 있다:
   - SRT, RR, Priority Scheduling
 
 
-
-#### FCFS(First Come First Served)
-- 먼저 CPU를 요처하는 프로세스를 먼저 처리한다.[^fn4]
-- 예) P1, P2, P3 순으로 프로세스가 CPU를 요청하면, P1,P2,P3 순으로 실행된다. 
-
-#### SJF(Shortest Job First)
-- 버스트 시간(burst time)이 짧은 프로세스부터 CPU를 할당한다. 
-- 평균 waiting time을 최소하 하기 위해 사용된다. 
-- 버스트 시간이 긴 프로세스는 오랜 시간 기다려야되서, No Starvation 룰을 위반한다. 
-
-
 #### SRT(Shortest Remaining Time)
- - 최단 잔여시간을 우선시 한다.  
+ - 최단 잔여시간을 우선시 한다. 
  - 진행 중인 프로세스가 있어도, 최단 잔여시간인 프로세스를 위해 sleep 시키고 짧은 프로세스를 먼저 할당한다.
- 
+
+  | Process | Arrival T | Burst T | Exit T | Waiting T | Turnaround T | 
+  |:--------|:---------:|:-------:|:------:| :--------:|:------------:|
+  | P1      |      0    |    8    |  17    |     9     |   17         |
+  | P2      |      1    |    4    |   5    |     0     |   4          |
+  |-------------------------------------------------------------------|
+  | P3      |      2    |    9    |  26    |     15    |    24        |
+  | P4      |      3    |    5    |  10    |      2    |     7        |
+
+
+  <figure>
+    <div class="chart">
+      <span class="block category-a" style="width: 4%">
+          <span class="value">P1<br>
+            <span class="duration">&nbsp;1</span>
+          </span>
+      </span>
+      <span class="block category-b" style="width: 15%">
+          <span class="value">P2<br>
+            <span class="duration">&nbsp;4</span>
+          </span>
+      </span>
+      <span class="block category-d" style="width: 19%">
+          <span class="value">P4<br>
+            <span class="duration">&nbsp;5</span>
+          </span>
+      </span>
+      <span class="block category-a" style="width: 27%">
+          <span class="value">P1<br>
+            <span class="duration">&nbsp;7</span>
+          </span>
+      </span>
+      <span class="block category-c" style="width: 35%">
+          <span class="value">P3<br>
+            <span class="duration">&nbsp;9</span>
+          </span>
+      </span>
+    </div>
+  </figure>
+
+  - P1이 0에 도착해서 실행된다. 
+  - t=1 에 P2가 도착하고, P2와 P1의 잔여시간을 비교한다. 
+  - $P2_t = 4 < 7 = P1_t$ 이기 때문에 더 적은 잔여 시간을 가진 P2가 실행된다. 
+  - P1, P3, P4 의 잔여시간을 비교한다. 각각, 7, 9, 5이기때문에 제일 적은 잔여시간을 가진 P4가 실행된다. 
+  - P1이 P4 보다 작은 잔여시간을 가지기 때문에 (7 < 9) P1이 실행된다. 
+  - P4가 실행된다. 
+
 #### RR(Round Robin)
 - Time Sharing System을 위해 설계되었다. 
 - 모든 프로세스가 같은 우선순위를 가지며, time slice 기반으로 스케줄링한다. 
@@ -131,6 +258,68 @@ CPU 스케줄링은 다음과 같은 상황에 발생할 수 있다:
 - 알고리즘의 성능은 Time slice 크기와 같아진다. 
 - Time slice 가 크면 FCFS와 다를게 없다. 
 - Time slice 가 작다면 불필요한 context switch가 많이 일어난다.  
+
+- Time slice = 3 ms 인 경우, 
+
+  | Process | Burst Time | Waiting Time |  Turnaround Time | 
+  |:--------|:----------:|:------------:|:----------------:|
+  | P1      |      13    |      10      |        23        | 
+  | P2      |      3     |       3      |         6        | 
+  |--------------------------------------------------------|
+  | P3      |      7     |       12     |        19        | 
+
+  <figure>
+  
+    <div class="chart">
+      <span class="block category-a" style="width: 13%">
+        <span class="value">P1<br>
+          <span class="duration">&nbsp;3</span>
+        </span>
+      </span>
+      <span class="block category-b" style="width: 13%">
+        <span class="value">P2<br>
+          <span class="duration">&nbsp;3</span>
+        </span>
+      </span>
+      <span class="block category-c" style="width: 13%">
+        <span class="value">P3<br>
+          <span class="duration">&nbsp;3</span>
+        </span>
+      </span>
+      <span class="block category-a" style="width: 13%">
+        <span class="value">P1<br>
+          <span class="duration">&nbsp;3</span>
+        </span>
+      </span>
+      <span class="block category-c" style="width: 13%">
+        <span class="value">P3<br>
+          <span class="duration">&nbsp;3</span>
+        </span>
+      </span>
+      <span class="block category-a" style="width: 13%">
+        <span class="value">P1<br>
+          <span class="duration">&nbsp;3</span>
+        </span>
+      </span>
+      <span class="block category-c" style="width: 4.5%">
+        <span class="value">P3<br>
+          <span class="duration">&nbsp;1</span>
+        </span>
+      </span>
+      <span class="block category-a" style="width: 13%">
+        <span class="value">P1<br>
+          <span class="duration">&nbsp;3</span>
+        </span>
+      </span>
+      <span class="block category-a" style="width: 4.5%">
+        <span class="value">P1<br>
+          <span class="duration">&nbsp;1</span>
+        </span>
+      </span>
+    </div>
+  </figure>
+
+
 
 #### Priority Scheduling(우선 순위 스케줄링)
 - 우선 순위가 높은 프로세스에 CPU를 우선 할당한다. 
@@ -146,4 +335,96 @@ CPU 스케줄링은 다음과 같은 상황에 발생할 수 있다:
 [^fn1]: [wikipedia](https://en.wikipedia.org/wiki/Scheduling_(computing)){:target="_blank"}
 [^fn2]: [studytonight](https://www.studytonight.com/operating-system/cpu-scheduling#:~:text=CPU%20scheduling%20is%20a%20process,making%20full%20use%20of%20CPU.&text=The%20selection%20process%20is%20carried,scheduler%20(or%20CPU%20scheduler).){:target="_blank"}
 [^fn3]: [hyunah030님 블로그](https://hyunah030.tistory.com/4){:target="_blank"}
-[^fn4]: [혀나_0_0님 블로그](https://l.tistory.com/4)
+
+
+
+
+<style> 
+
+  figure {
+    margin: 0 auto;
+    max-width: 1100px;
+    position: relative;
+  }
+  @keyframes expand {
+    from {width: 0%;}
+    to {width: 100%;}
+  }
+  .chart {
+    overflow: hidden;
+    width: 0%;
+    animation: expand 1.5s ease forwards;
+  }
+
+  .block {
+    display: block;
+    height: 100px;
+    color: #fff;
+    font-size: .75em;
+    float: left;
+    background-color: #334D5C;
+    position: relative;
+    overflow: hidden;
+    opacity: 1;
+    transition: opacity, .3s ease;
+    cursor: pointer;
+  }
+
+  /* .block:nth-of-type(2), */
+  /* .legend li:nth-of-type(2):before */
+  .category-b.block,
+  .legend .category-b:before {
+    background-color: #45B29D;
+  }
+  .category-c.block,
+  .legend .category-c:before {
+    background-color: #EFC94C;
+  }
+  .category-d.block,
+  .legend .category-d:before {
+    background-color: #E27A3F;
+  }
+
+  .value {
+    display: block;
+    line-height: 1em;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+  }
+
+  .value .duration {
+    color: #85be62;
+    font-size: .9em;
+
+  }
+
+  .x-axis {
+      text-align: center;
+    padding: .5em 0 2em;
+  }
+
+  .legend {
+      margin: 0 auto;
+      padding: 0;
+    font-size: .9em;
+  }
+  .legend li {
+      display: inline-block;
+      padding: .25em 1em;
+      line-height: 1em;
+  }
+  .legend li:before {
+      content: "";
+      margin-right: .5em;
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+    background-color: #334D5C;
+  }
+
+</style>
+
+

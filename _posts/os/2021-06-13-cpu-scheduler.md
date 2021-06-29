@@ -1,6 +1,6 @@
 ---
 title: 'CPU 스케줄링(CPU Scheduling)'
-last_modified_at: 2021-06-16T20:57
+last_modified_at: 2021-06-28T19:07
 categories:
   - OS
 tags:
@@ -130,6 +130,7 @@ CPU 스케줄링은 다음과 같은 상황에 발생할 수 있다:
       </span>
     </div>
   </figure>
+  [^fn4]
 
 - Average waiting time: $\frac{(0 + 15 + 20)}{3} \approx 11.67$ 
 - 만약 P3, P2, P1 순으로 요청하면, P3, P2, P1 순으로 실행된다. 
@@ -335,6 +336,7 @@ CPU 스케줄링은 다음과 같은 상황에 발생할 수 있다:
 [^fn1]: [wikipedia](https://en.wikipedia.org/wiki/Scheduling_(computing)){:target="_blank"}
 [^fn2]: [studytonight](https://www.studytonight.com/operating-system/cpu-scheduling#:~:text=CPU%20scheduling%20is%20a%20process,making%20full%20use%20of%20CPU.&text=The%20selection%20process%20is%20carried,scheduler%20(or%20CPU%20scheduler).){:target="_blank"}
 [^fn3]: [hyunah030님 블로그](https://hyunah030.tistory.com/4){:target="_blank"}
+[^fn4]: [horizontally stacked bar chart](https://codepen.io/richardramsay/pen/ZKmQJv){:target="_blank"}
 
 
 

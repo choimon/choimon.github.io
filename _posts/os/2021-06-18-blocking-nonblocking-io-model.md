@@ -5,7 +5,7 @@ categories:
   - OS
 tags:
   - sync/async
-  - blocking/nonblocking I/O
+  - I/O
 toc: true
 toc_sticky: true
 ---

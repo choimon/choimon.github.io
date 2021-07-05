@@ -1,6 +1,6 @@
 ---
 title: 'Are REST APIs and HTTP APIs the same thing?'
-last_modified_at: 2021-07-03T14:07
+last_modified_at: 2021-07-05T20:07
 categories:
   - Software
 tags:
@@ -32,7 +32,7 @@ All operations in a RESTful system should be stateless. Server should not store 
 
 ### RESTful API 
 REST stands for REpresentational State Transfer. \
-When a RESTful API is called, the server transfers to the client a representation of the requested resource's *state*. 
+When a RESTful API is called, the server transfers to the client a representation of the requested resource's *state*.[^fn3]
 
 For example, when an application calls some REST API to fetch a user(resource) named "choi," the API will return the state of the user `choi`. This state may include full name, telephone number, and number of friends. 
 
@@ -63,17 +63,16 @@ The above URL is using the predefined HTTP method GET, but is using the query pa
 ## REST APIs and HTTP APIs
 As mentioned above, REST is an architectural style, while HTTP is a protocol. REST is not necessarily tied to HTTP[^fn2]. This architectural style may use HTTP, FTP, or other communication protocols (HTTP is widely used, though). 
 
-A RESTful API is an API that adheres to all the REST constraints. A HTTP API, on the other hand, is any API that uses HTTP as their transfer protocol.[^fn3]
+A RESTful API is an API that adheres to all the REST constraints. A HTTP API, on the other hand, is any API that uses HTTP as their transfer protocol.[^fn4]
 
-Many developers often call HTTP APIs as "REST APIs," but not all of the claimed APIs are truly RESTful.[^fn4] 
+Many developers often call HTTP APIs as "REST APIs," but not all of the claimed APIs are truly RESTful.[^fn5] 
 
 
 # References
 [^fn1]: [baeldung](https://www.baeldung.com/cs/rest-vs-http){:target="_blank"}
 [^fn2]: [medium post](https://medium.com/the-sixt-india-blog/rest-stop-calling-your-http-apis-as-restful-apis-e8336e3e799b){:target="_blank"}
-[^fn3]:[Aboullaite Med](https://aboullaite.me/http-rest-apis/){:target="_blank"}
-[^fn4]:[linkedin-REST](https://www.linkedin.com/pulse/rest-stop-calling-your-http-apis-restful-arpit-jain){:target="_blank"}
+[^fn3]: [stackoverflow](https://stackoverflow.com/questions/10418105/what-does-representational-state-mean-in-rest){:target="_blank"}
+[^fn4]:[Aboullaite Med](https://aboullaite.me/http-rest-apis/){:target="_blank"}
+[^fn5]:[linkedin-REST](https://www.linkedin.com/pulse/rest-stop-calling-your-http-apis-restful-arpit-jain){:target="_blank"}
 
 
-
-https://stackoverflow.com/questions/10418105/what-does-representational-state-mean-in-rest

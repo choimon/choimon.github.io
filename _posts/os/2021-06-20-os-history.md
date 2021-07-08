@@ -4,6 +4,7 @@ last_modified_at: 2021-06-20T23:19
 categories:
   - OS
 tags:
+  - interrupt
 toc: true
 toc_sticky: true
 ---
@@ -113,8 +114,8 @@ CPU에게 보내는 전기 신호다.
 **내부 인터럽트(Internal Interrupt)**
 
 프로그램을 수행하는 도중에 발생하는 예외 상황을 처리한다.
-예) 0으로 나누는 동작
-- 프로그램의 내부에 result = a / 0; 와 같은 코드가 있을 때, CPU는 내부 인터럽트를 발생시켜 운영체제 안에 있는 DividedByZero라는  ISR로 이동한다. 이 곳에서 잘못된 동작을 수행한 프로그램을 강제로 종료시킨다.
+- 예) 0으로 나누는 동작 \
+  프로그램의 내부에 result = a / 0; 와 같은 코드가 있을 때, CPU는 내부 인터럽트를 발생시켜 운영체제 안에 있는 DividedByZero라는  ISR로 이동한다. 이 곳에서 잘못된 동작을 수행한 프로그램을 강제로 종료시킨다.
 
 
 ### 동작 

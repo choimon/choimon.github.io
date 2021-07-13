@@ -1,6 +1,6 @@
 ---
 title: 'Program과 Process와 Thread의 차이'
-last_modified_at: 2021-06-11T22:09
+last_modified_at: 2021-07-13T21:52
 categories:
   - OS
 tags:
@@ -35,7 +35,7 @@ toc_sticky: true
 디스크로부터 메모리에 적재되어 CPU의 할당을 받을 수 있는 것 (독립적인 개체)
 
 ![process image]({{"/assets/images/posts/20210611_process.png"| relative_url}})
-[^fn5]
+[^fn4]
 {: .text-right}
 
 - 운영체제로부터 시스템 자원을 할당받음 
@@ -51,15 +51,47 @@ toc_sticky: true
   - 데이터 섹션: 전역 변수들을 수록함 
   - 힙: 프로세스 실행 중에 동적으로 할당되는 메모리 ("new")
   
-
-- 'active entity'라고도 불린다.
+- 'job,' 'task,' 'active entity'라고도 불린다.
   - 프로세스는 주기억장치에 상주하고, 시스템이 리부트되면 주기억장치에서 사라진다.
 - 1개의 프로세스는 1개 이상의 스레드를 가질 수 있다. 
+
+### 프로세스 상태 
+![process state]({{"/assets/images/posts/20210713_process_state.png"| relative_url}})
+[^fn8]
+
+
+- **New**: 프로세스가 생성 중이다.[^fn6]
+  - 프로세스가 생성 되었지만 아직 OS의 승인(admit)을 받지 못한 상태[^fn7]
+- **Ready**: 프로세스가 할당되기 위해 기다린다. 
+  - 할당된 프로그램이 실행되기 위한 모든 준비(초기화)를 마친다. Running 할 준비가 되어 있다. 
+  - New 상태에서 승인(admit)된 상태. CPU를 제외한 다른 자원 준비 완료.
+  - 보조기억장치에 있는 프로그램을 실행시켜 메모리에 로드된 상태 
+- **Running**: CPU가 해당 프로세스를 실행한다. 명령어들이 실행된다.
+  - 프로세스가 CPU를 할당받아 실제로 수행되고 있다. 
+- **Waiting**: 프로세스가 어떤 이벤트가 일어나기를 기다린다(Blocked).
+  - 프로세스가 끝나지 않은 시점에서 I/O나 다른 이벤트로 인해 CPU를 사용하지 않고 다른 작업을 한다. 
+  - 프로세스가 running하다가 할당받은 CPU를 반납하고, I/O 작업 완료를 기다리는 것 같은 특별한 이벤트를 기다린다.
+  - 해당 작업이 끝나면 다시 CPU에 의해 실행될 수 있도록 Ready상태로 돌아가야한다. 
+
+- **Terminated**: 프로세스가 실행을 끝내고 완전히 종료된다. 
+
+
+
+**프로세스 전이동작**
+- admit*(new -> ready)*: OS에 의해 프로세스를 승인 
+- dispatch*(ready -> running)*: 처리기가 프로세스를 수행하기 위해 CPU할당. 시간도 할당. 
+- interrupt*(running -> ready)*: 할당된 시간이 지나면 time out interrupt가 발생. CPU는 다른 프로세스를 실행시킴.
+- event wait*(running -> waiting)*: time out 전에 I/O 요청이 발생(sleep, block)
+- event completion*(waiting -> ready)*: I/O요청이 완료되면 다시 ready 상태로 전이.
+- exit*(running -> terminated, ready -> terminated, waiting -> terminated)*: 프로세스 종료 
+
+
 
 ### 프로세스 제어 블록(Process Control Block, PCB)
 
 특정 프로세스에 대한 중요한 정보를 저장 하는 운영체제의 자료구조[^fn4]
 - 운영체제는 프로세스를 관리하기 위해 프로세스의 생성과 동시에 고유한 PCB를 생성한다.
+- Task Control Block(TCB)라고도 한다.
 - 프로세스 작업의 진행 상황이 모두 PCB에 저장된다. 
   - 프로세스는 CPU를 할당받아 작업을 처리하다가도 프로세스 전환이 발생하면 진행하던 작업을 저장하고 CPU를 반환해야 하는데, 이때 작업 진행 상황을 PCB에 저장한다. 
   - 다시 CPU를 할당받게 되면 PCB에 저장되어 있던 내용을 불러와 이전에 종료됐던 시점부터 다시 작업을 수행한다. 
@@ -183,3 +215,8 @@ toc_sticky: true
 
 [^fn4]: [깃헙 인터뷰 문제](https://github.com/JaeYeopHan/Interview_Question_for_Beginner/tree/master/OS){:target="_blank"}
 [^fn5]: [권희정님 블로그](https://gmlwjd9405.github.io/2018/09/14/process-vs-thread.html){:target="_blank"}
+[^fn6]: [codemcd님 velog](https://velog.io/@codemcd/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9COS-5.-%ED%94%84%EB%A1%9C%EC%84%B8%EC%8A%A4-%EA%B4%80%EB%A6%AC){:target="_blank"}
+[^fn7]: [공부를 합시다 블로그](https://m.blog.naver.com/4717010/60207137085){:target="_blank"}
+[^fn8]: [cs uic](https://www.cs.uic.edu/~jbell/CourseNotes/OperatingSystems/3_Processes.html){:target="_blank"}
+
+

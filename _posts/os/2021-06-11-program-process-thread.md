@@ -90,6 +90,10 @@ toc_sticky: true
 ### 프로세스 제어 블록(Process Control Block, PCB)
 
 특정 프로세스에 대한 중요한 정보를 저장 하는 운영체제의 자료구조[^fn4]
+
+![PCB]({{"/assets/images/posts/20210714_pcb.png"| relative_url}})
+[^fn6]
+{: .text-right}
 - 운영체제는 프로세스를 관리하기 위해 프로세스의 생성과 동시에 고유한 PCB를 생성한다.
 - Task Control Block(TCB)라고도 한다.
 - 프로세스 작업의 진행 상황이 모두 PCB에 저장된다. 

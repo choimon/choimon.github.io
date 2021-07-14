@@ -1,6 +1,6 @@
 ---
 title: 'Program과 Process와 Thread의 차이'
-last_modified_at: 2021-07-13T21:52
+last_modified_at: 2021-07-14T20:07
 categories:
   - OS
 tags:
@@ -106,6 +106,13 @@ toc_sticky: true
   - 입출력 상태 정보 : 프로세스에 할당된 입출력 장치들과 열린 파일 목록
   - 어카운팅 정보 : 사용된 CPU 시간, 시간제한, 계정번호 등
 
+### 프로세스 큐(Queue)
+프로세스는 수행하면서 상태가 여러 번 변하고 상태에 따라 서비스를 받아야 하는 곳이 다르다. 
+일반적으로 프로세스는 여러 개가 한 번에 수행 되므로 이에 따른 순서가 필요하다. 
+이러한 순서를 대기하는 곳을 큐라고 한다. 큐에는 Job, Ready, Device queue 가 있다.
+
+자세한 내용은 [스케줄러](../scheduler/#스케줄링-큐scheduling-queue) 포스트를 참고하면 된다. 
+{: .notice}
 
 ## 스레드(Thread)
 프로세스의 실행 단위 \
@@ -210,9 +217,7 @@ toc_sticky: true
 # References
 [^fn1]:[java concept of the day](https://javaconceptoftheday.com/differences-between-program-vs-process-vs-threads/){:target="_blank"}
 [^fn2]: [webhostinghero: Linux executable files](https://webhostinghero.org/which-are-the-linux-executable-files-and-how-do-we-create-them/){:target="_blank"}
-
 [^fn3]: [aerorock: list of exe file extensions in Windows](https://aerorock.co.nz/list-of-executable-file-extensions-windows/){:target="_blank"}
-
 [^fn4]: [깃헙 인터뷰 문제](https://github.com/JaeYeopHan/Interview_Question_for_Beginner/tree/master/OS){:target="_blank"}
 [^fn5]: [권희정님 블로그](https://gmlwjd9405.github.io/2018/09/14/process-vs-thread.html){:target="_blank"}
 [^fn6]: [codemcd님 velog](https://velog.io/@codemcd/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9COS-5.-%ED%94%84%EB%A1%9C%EC%84%B8%EC%8A%A4-%EA%B4%80%EB%A6%AC){:target="_blank"}

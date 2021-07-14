@@ -1,6 +1,6 @@
 ---
 title: '스케줄러(Scheduler)'
-last_modified_at: 2021-06-12T18:54
+last_modified_at: 2021-07-14T20:07
 categories:
   - OS
 tags:
@@ -16,7 +16,8 @@ toc_sticky: true
 한정적인 메모리를 여러 프로세스가 효율적으로 사용할 수 있도록 실행할 프로세스를 선택한다
 
 ## 스케줄링 큐(Scheduling Queue)
-프로세스를 스케줄링 관리하는 큐에는 3가지 종류가 존재한다.[^fn1]
+프로세스는 수행하면서 상태가 여러 번 변하고 상태에 따라 서비스를 받아야 하는 곳이 다르다. 일반적으로 프로세스는 여러 개가 한 번에 수행 되므로 이에 따른 순서가 필요하다. 이러한 순서를 대기하는 곳을 큐라고 한다. 프로세스를 스케줄링 관리하는 큐에는 3가지 종류가 존재한다.[^fn1]
+
 
 ![scheulder image ]({{"/assets/images/posts/20210612_queuing_diagram.jpeg"| relative_url}})
 [^fn2]
@@ -24,13 +25,20 @@ toc_sticky: true
 
 1. Job Queue
 - 현재 시스템 안의 모든 프로세스의 집합[^fn3] 
+- 하드디스크에 있는 프로그램이 실행되기 위해 메인 메모리의 할당 순서를 기다리는 큐[^fn6]
 2. Ready Queue
+- CPU 점유 순서를 기다리는 큐
 - ready 상태의 메인메모리 안에 상주하며 CPU를 잡아서 실행되기를 기다리는 모든 프로세스의 
 집합
 - 새로운 프로세스는 이 큐에 담긴다.  
 3. Device Queue
 - Device I/O 작업을 대기하는 프로세스들의 집합 
+- I/O를 하기 위한 여러 장치가 있는데, 각 장치를 기다리는 큐가 각각 존재한다.
 - I/O장치가 현재 사용 불가해서(unavailable) blocked 된 프로세스들을 들고 있다.
+
+![PCB]({{"/assets/images/posts/20210714_process_queue.png"| relative_url}})
+[^fn6]
+{: .text-right}
 
 ## 스케줄러 종류 
 각각의 Queue에 프로세스들을 넣고 빼주는 스케줄러에는 3가지 종류가 존재한다. 
@@ -88,6 +96,4 @@ toc_sticky: true
 [^fn3]: [테리의 일상 블로그](https://dheldh77.tistory.com/entry/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C-%EC%8A%A4%EC%BC%80%EC%A4%84%EB%9F%ACScheduler){:target="_blank"}
 [^fn4]: [geeksforgeeks](https://www.geeksforgeeks.org/difference-between-long-term-and-medium-term-scheduler/){:target="_blank"}
 [^fn5]: [kosaf04phy님 블로그](https://kosaf04pyh.tistory.com/191){:target="_blank"}
-
-
-
+[^fn6]: [codemcd님 velog](https://velog.io/@codemcd/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9COS-5.-%ED%94%84%EB%A1%9C%EC%84%B8%EC%8A%A4-%EA%B4%80%EB%A6%AC){:target="_blank"}

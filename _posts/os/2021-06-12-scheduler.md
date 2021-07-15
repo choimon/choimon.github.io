@@ -1,6 +1,6 @@
 ---
 title: '스케줄러(Scheduler)'
-last_modified_at: 2021-07-14T20:07
+last_modified_at: 2021-07-15T22:07
 categories:
   - OS
 tags:
@@ -16,7 +16,7 @@ toc_sticky: true
 한정적인 메모리를 여러 프로세스가 효율적으로 사용할 수 있도록 실행할 프로세스를 선택한다
 
 ## 스케줄링 큐(Scheduling Queue)
-프로세스는 수행하면서 상태가 여러 번 변하고 상태에 따라 서비스를 받아야 하는 곳이 다르다. 일반적으로 프로세스는 여러 개가 한 번에 수행 되므로 이에 따른 순서가 필요하다. 이러한 순서를 대기하는 곳을 큐라고 한다. 프로세스를 스케줄링 관리하는 큐에는 3가지 종류가 존재한다.[^fn1]
+프로세스는 수행하면서 상태가 여러 번 변한다. 프로세스 상태에 따라 서비스를 받아야 하는 곳이 다르다. 일반적으로 프로세스는 여러 개가 한 번에 수행 되므로 이에 따른 순서가 필요하다. 이러한 순서를 대기하는 곳을 큐라고 한다. 프로세스를 스케줄링 관리하는 큐에는 프로세스 상태에 따라 3가지 종류가 존재한다.[^fn1]
 
 
 ![scheulder image ]({{"/assets/images/posts/20210612_queuing_diagram.jpeg"| relative_url}})
@@ -40,15 +40,32 @@ toc_sticky: true
 [^fn6]
 {: .text-right}
 
+큐 내부에는 각 프로세스의 PCB가 저장되어 있다. \
+프로세스의 상태가 바뀌면, 해당 프로세스 PCB가 기존 큐에서 unlink되고 새로운 상태에 따른 큐로 옮겨진다.[^fn7]
+
+
+큐는 프로세스 순서를 기다리는 공간이며, 이 순서를 정해주는 알고리즘을 스케줄링이라 한다. 
+
+
+
+
 ## 스케줄러 종류 
-각각의 Queue에 프로세스들을 넣고 빼주는 스케줄러에는 3가지 종류가 존재한다. 
+각각의 큐에 프로세스들을 넣고 빼주는 스케줄러에는 3가지 종류가 존재한다. 
 
 ![scheulder image ]({{"/assets/images/posts/20210612_scheduler.png"| relative_url}})
 [^fn4]
 {: .text-right}
 
+- Job Queue - Job Scheduler(Long-term scheduler)
+- Ready Queue - CPU Scheduler(Short-term scheduler)
+- Device Queue - Device Scheduler
+
+
 ### 장기 스케줄러(Long-term scheduler/Job scheduler)
+Job Queue의 순서를 정해준다. \
 한정된 메모리에 많은 프로세스가 한꺼번에 메모리에 올라올 때, 대용량 메모리(디스크)에 임시로 저장된다. 이 큐에 저장된 프로세스 중 어떤 프로세스를 메모리에 할당하여 ready queue로 보낼지 결정한다.
+
+
 
 - 메모리와 디스크 사이의 스케줄링 담당 
 - 프로세스에 메모리 및 각종 리소스를 할당(admit)
@@ -56,7 +73,7 @@ toc_sticky: true
   - degree of multiprogramming이 안정적이다면, 프로세스 생성 평균속도와 시스템을 나가는 프로세스 평균속도가 같다.[^fn2] 
 - 프로세스 상태변화 
   - new -> ready(in memory)
-
+- 스케줄링이 발생하는 시간(초~분)이 비교적 오래 걸리기 때문에 long-term(장기) 스케줄러라고도 한다.
 - 모든 시스템이 지원하지 않는다. 
   - Time-sharing os는 장기 스케줄러가 없다. 바로 메모리에 올라가 ready 상태가 된다. 
 
@@ -66,7 +83,8 @@ toc_sticky: true
 - 어떤 프로세스를 다음으로 실행할지(running) 결정한다. 
 - ready 한 프로세스들 중 하나를 골라 실행시키고 CPU를 할당한다 (scheduler dispatch). 
 - 장기 스케줄러보다 적은 degree of Multiprogramming 제어 제공
-- 장기 스케줄러보다 빠르다 
+- 장기 스케줄러보다 빠르다. 스케줄링이 발생하는 시간이 매우 짧아서 short-term 스케줄러라고도 한다.
+- 일반적으로 부르는 스케줄러는 단기 스케줄러를 뜻한다. 
 - 프로세스 상태변화
   - ready -> running (-> waiting -> ready)
 
@@ -97,3 +115,4 @@ toc_sticky: true
 [^fn4]: [geeksforgeeks](https://www.geeksforgeeks.org/difference-between-long-term-and-medium-term-scheduler/){:target="_blank"}
 [^fn5]: [kosaf04phy님 블로그](https://kosaf04pyh.tistory.com/191){:target="_blank"}
 [^fn6]: [codemcd님 velog](https://velog.io/@codemcd/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9COS-5.-%ED%94%84%EB%A1%9C%EC%84%B8%EC%8A%A4-%EA%B4%80%EB%A6%AC){:target="_blank"}
+[^fn7]: [tutorialspoint](https://www.tutorialspoint.com/operating_system/os_process_scheduling.htm){:target="_blank"}

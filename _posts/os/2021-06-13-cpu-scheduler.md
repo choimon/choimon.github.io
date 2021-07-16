@@ -1,6 +1,6 @@
 ---
 title: 'CPU 스케줄링(CPU Scheduling)'
-last_modified_at: 2021-06-28T19:07
+last_modified_at: 2021-07-16T21:55
 categories:
   - OS
 tags:
@@ -24,7 +24,7 @@ CPU 스케줄링에 대해 알아본다.[^fn1]
 
 ## CPU 스케줄러 
 CPU와 메모리 사이의 스케줄링을 담당하는 단기 스케줄러(short-term scheduler)이다. 
-메모리에 올라가 있는 ready 한 프로세스들 중 어떤 프로세스를 실행해서 CPU에 할당(allocate)할지 결정한다. 
+메모리에 올라가 있는 ready 한 프로세스들 중 어떤 프로세스를 실행해서 CPU에 할당할지 결정한다. 
 
 ## Dispatcher 
 CPU 스케줄러가 선택한 프로세스에 CPU 제어를 주는 모듈이다. 
@@ -36,7 +36,7 @@ CPU 스케줄러가 선택한 프로세스에 CPU 제어를 주는 모듈이다.
 디스패처는 매번 프로세스 전환(switch)이 일어날 때 사용됨으로 빨라야 한다. 한 프로세스를 멈추고 다른 프로세스를 시작하는 시간을 Dispatch Latency 라고 한다. 
 
 
-## CPU 스케줄링 종류 및 알고리즘 
+## CPU 스케줄링 목적과 종류 
 
 CPU 스케줄링은 다음과 같은 상황에 발생할 수 있다: 
 1. 프로세스가 running 상태에서 waiting 상태로 전환할 때 
@@ -80,7 +80,6 @@ CPU 스케줄링은 다음과 같은 상황에 발생할 수 있다:
 - Response time 
   - 요청에 대한 응답시간을 줄인다. 
 
-
 **Time Sharing 시스템**
 
 각 프로세스에 CPU에 대한 일정시간을 할당하여 주어진 시간동안 프로그램을 수행할 수 있게하는 시스템 
@@ -90,15 +89,45 @@ CPU 스케줄링은 다음과 같은 상황에 발생할 수 있다:
   - 멀티미디어 시스템에서의 품질이 저하되는 부분을 방지한다. 
 
 
+### 스케줄링 criteria 
+스케줄링의 효율을 분석하는 기준들이다. 
+- CPU Utilization(이용률, %)
+  - CPU가 수행되는 비율
+- Throughput(처리율, jobs/sec)
+  - 단위시간당 처리하는 작업의 수, 처리량
+- Turnaround time(반환시간)
+  - 프로세스의 처음 시작 시간부터 모든 작업을 끝내고 종료하는데 걸린 시간
+  - CPU, waiting, I/O 등 모든 시간을 포함. 반환시간은 짧을 수록 좋다.
+- Waiting time(대기시간)
+  - CPU를 점유하기 위해서 ready queue에서 기다린 시간
+  - 다른 큐에서 대기한 시간은 제외한다.
+- Response time(응답시간)
+  - 일반적으로 대화형 시스템에서 입력에 대한 반응 시간을 말한다.
+
+
 ### 비선점 스케줄링(Non-Preemptive Scheduling)
+- 한 프로세스가 한 번 CPU를 점유하면, I/O(프로세스 상태가 실행에서 대기로 변경)가 발생하거나 프로세스가 종료될 때까지 다른 프로세스가 CPU를 점유하지 못한다.[^fn5]
 - Time-slice가 없다.[^fn3]
 - CPU를 사용 중인 프로세스가 자율적으로 반납한다. 
 - 프로세스가 자율적으로 CPU를 반납하는 시점에서 사용한다. 
 - 스케줄링 알고리즘 
   - FCFS, SJF, Priority Scheduling
 
+### 선점 스케줄링(Preemptive Scheduling)
+- 낮은 우선순위를 가진 프로세스보다 높은 우선순위를 가진 프로세스가 CPU를 선점한다. 
+- 프로세스가 CPU를 점유하고 있는 동안 I/O나 인터럽트가 발생한 것도 아니고, 작업을 끝내지도 않았는데도, 다른 프로세스가 CPU를 강제로 점유 할 수 있다. [^fn5]
+- 운영체제가 알고리즘에 따라 적당한 프로세스에 CPU를 할당하고, 필요할 때 회수한다. 
+- I/O-bound 프로세스는 CPU-bound 프로세스보다 높은 우선순위에 있어야 한다. 
+- Time slice의 양은 CPU 버스트 시간(burst time, execution time)보다 조금만 더 많아야 한다. 
+  - Time slice가 더 적을 경우, 불필요한 context switch 가 많이 일어난다. 
+  - 반대로, time slice가 더 클 경우에는, I/O가 일어날 때에 CPU를 반납하거나, 다른 프로세스는 CPU에 굶주리는 현상이 일어날 수 있다.
+- Real time 프로세스는 다른 프로세스에 비해 매우 높은 우선순위를 갖는다. 
+
+- 스케줄링 알고리즘 
+  - SRT, RR, Priority Scheduling
 
 
+### CPU 스케줄링 알고리즘 
 #### FCFS(First Come First Served)
 - 먼저 CPU를 요청하는 프로세스를 먼저 처리한다.[^fn3]
 - 예) P1, P2, P3 순으로 프로세스가 CPU를 요청하면, P1,P2,P3 순으로 실행된다. 
@@ -188,18 +217,6 @@ CPU 스케줄링은 다음과 같은 상황에 발생할 수 있다:
   </figure>
 
 
-
-### 선점 스케줄링(Preemptive Scheduling)
-- 낮은 우선순위를 가진 프로세스보다 높은 우선순위를 가진 프로세스가 CPU를 선점한다. 
-- 운영체제가 알고리즘에 따라 적당한 프로세스에 CPU를 할당하고, 필요할 때 회수한다. 
-- I/O-bound 프로세스는 CPU-bound 프로세스보다 높은 우선순위에 있어야 한다. 
-- Time slice의 양은 CPU 버스트 시간(burst time, execution time)보다 조금만 더 많아야 한다. 
-  - Time slice가 더 적을 경우, 불필요한 context switch 가 많이 일어난다. 
-  - 반대로, time slice가 더 클 경우에는, I/O가 일어날 때에 CPU를 반납하거나, 다른 프로세스는 CPU에 굶주리는 현상이 일어날 수 있다.
-- Real time 프로세스는 다른 프로세스에 비해 매우 높은 우선순위를 갖는다. 
-
-- 스케줄링 알고리즘 
-  - SRT, RR, Priority Scheduling
 
 
 #### SRT(Shortest Remaining Time)
@@ -337,6 +354,7 @@ CPU 스케줄링은 다음과 같은 상황에 발생할 수 있다:
 [^fn2]: [studytonight](https://www.studytonight.com/operating-system/cpu-scheduling#:~:text=CPU%20scheduling%20is%20a%20process,making%20full%20use%20of%20CPU.&text=The%20selection%20process%20is%20carried,scheduler%20(or%20CPU%20scheduler).){:target="_blank"}
 [^fn3]: [hyunah030님 블로그](https://hyunah030.tistory.com/4){:target="_blank"}
 [^fn4]: [horizontally stacked bar chart](https://codepen.io/richardramsay/pen/ZKmQJv){:target="_blank"}
+[^fn5]: [codemcd velog](https://velog.io/@codemcd/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9COS-6.-CPU-%EC%8A%A4%EC%BC%80%EC%A4%84%EB%A7%81){:target="_blank"}
 
 
 

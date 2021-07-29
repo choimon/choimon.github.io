@@ -1,6 +1,6 @@
 ---
-title: 'Program과 Process와 Thread의 차이'
-last_modified_at: 2021-07-14T20:07
+title: 'Program과 Process와 Thread'
+last_modified_at: 2021-07-29T22:39
 categories:
   - OS
 tags:
@@ -54,6 +54,20 @@ toc_sticky: true
 - 'job,' 'task,' 'active entity'라고도 불린다.
   - 프로세스는 주기억장치에 상주하고, 시스템이 리부트되면 주기억장치에서 사라진다.
 - 1개의 프로세스는 1개 이상의 스레드를 가질 수 있다. 
+
+### 프로세스 생성과 종료 
+프로세스는 프로세스에 의해 생성된다. 컴퓨터 부팅 시 운영체제가 메모리에 올라온다. 운영체제가 처음으로 하는 일은 최초의 프로세스를 생성하는 것이다. 최초의 프로세스가 다른 프로세스를 만들고, 이 프로세스가 또 다른 프로세스를 만든다. 
+
+최초의 프로세스 이름은 운영체제마다 다르다. Unix 운영체제에서는 최초의 프로세스를 **Init**이라고 한다.[^fn9]
+
+- 프로세스 생성 
+  - `fork()`: 새로운 프로세스를 만드는 시스템 콜 
+  - `exec()`: 만들어진 프로세스에서 파일을 실행할 때 쓰는 시스템 콜
+
+- 프로세스 종료 
+  - `exit()`: 프로세스를 종료하는 시스템 콜 
+  - 한 프로세스가 종료되면 해당 프로세스가 사용한 모든 자원(메모리, 파일, I/O)은 회수되어야 한다. 회수된 자원과 권한은 모두 운영체제로 되돌아가야 한다. 
+
 
 ### 프로세스 상태 
 ![process state]({{"/assets/images/posts/20210713_process_state.png"| relative_url}})
@@ -173,17 +187,18 @@ toc_sticky: true
   - 프로세스는 각각 독립된 메모리 영역을 할당받았기 때문에 하나의 프로그램에 속하는 프로세스들 사이의 변수를 공유할 수 없다.
 
 
-### 멀티 스레드(Multi Thread)
+### 멀티 스레드(Multi Thread, 다중 쓰레드)
 하나의 응용프로그램을 여러 개의 스레드로 구성하고 각 스레드가 하나의 작업을 처리하도록 하는 것 \
 하나의 프로세스를 다수의 실행 단위로 구분하여 자원을 공유하고, 자원의 생성과 관리의 중복성을 최소화하여 수행 능력을 향상시키는 것 
 
 - 윈도우, 리눅스 등 많은 운영체제가 멀티 프로세싱을 지원하고 있지만 멀티 스레딩을 기본으로 하고 있다.
-- 예) 웹 서버는 대표적인 멀티 스레드 응용 프로그램이다.
+- 예) 웹 서버, 웹 브라우저(화면을 출력하는 쓰레드, 데이터를 읽어오는 쓰레드 따로 수행), Word processor, Media player 
 - 각각의 스레드가 독립적인 작업을 수행해야 하기 때문에, 각자의 스택과 PC 레지스터 값을 갖고 있다. 
   - 스택: 함수 호출 시 전달되는 인자, 되돌아갈 주소값 및 함수 내에서 선언하는 변수 등을 저장하기 위해 사용되는 메모리 공간 
   - 독립적인 스택 메모리 공간이란, 독립적인 함수 호출이 가능하다는 말. 독립적인 실행 흐름이 추가됌 
 
   - PC 값은 스레드가 명령어의 어디까지 수행하였는지를 알려준다. 이 값을 기억해야 하는 이유는, 명령어가 연속적으로 수행되지 않을 수 있기 때문이다 (스레드가 CPU를 할당받았다가 스케줄러에 의해 다시 선점당할 수 있기 때문이다). 
+
 
   
 **장점 (+)**
@@ -224,8 +239,10 @@ toc_sticky: true
 [^fn3]: [aerorock: list of exe file extensions in Windows](https://aerorock.co.nz/list-of-executable-file-extensions-windows/){:target="_blank"}
 [^fn4]: [깃헙 인터뷰 문제](https://github.com/JaeYeopHan/Interview_Question_for_Beginner/tree/master/OS){:target="_blank"}
 [^fn5]: [권희정님 블로그](https://gmlwjd9405.github.io/2018/09/14/process-vs-thread.html){:target="_blank"}
-[^fn6]: [codemcd님 velog](https://velog.io/@codemcd/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9COS-5.-%ED%94%84%EB%A1%9C%EC%84%B8%EC%8A%A4-%EA%B4%80%EB%A6%AC){:target="_blank"}
+[^fn6]: [codemcd님 velog - 프로세스 관리](https://velog.io/@codemcd/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9COS-5.-%ED%94%84%EB%A1%9C%EC%84%B8%EC%8A%A4-%EA%B4%80%EB%A6%AC){:target="_blank"}
 [^fn7]: [공부를 합시다 블로그](https://m.blog.naver.com/4717010/60207137085){:target="_blank"}
 [^fn8]: [cs uic](https://www.cs.uic.edu/~jbell/CourseNotes/OperatingSystems/3_Processes.html){:target="_blank"}
+
+[^fn9]: [codemcd님 velog - 쓰레드](https://velog.io/@codemcd/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9COS-7.-%EC%93%B0%EB%A0%88%EB%93%9CThread){:target="_blank"}
 
 

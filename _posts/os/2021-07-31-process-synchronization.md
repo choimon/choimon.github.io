@@ -1,6 +1,6 @@
 ---
 title: '프로세스 동기화(Process Synchronization)'
-last_modified_at: 2021-08-02T23:10
+last_modified_at: 2021-08-03T23:35
 categories:
   - OS
 tags:
@@ -31,7 +31,6 @@ toc_sticky: true
 
 
 
-# 동기화 문제 
 
 ## Race Condition 
 동시에 여러 개의 프로세스가 동일한 자료를 접근하여 경쟁하는 현상
@@ -56,12 +55,17 @@ toc_sticky: true
 
 ```
 do {
-  // entry section: 프로레스/스레드가 임계구역으로 들어가기위해 요청한다.
+  // entry section
     critical section 
   // exit section 
     remainder section
 } while (TRUE);
 ```
+- entry section: 프로세스/스레드가 critical section에 들어가기 위해 요청한다.
+- exit section: 프로세스/스레드가 critical section에서 나간다. 
+- remainder section: critical이 아닌 다른 section을 처리한다.[^fn7]
+- 
+
 이렇게 표현할 수도 있다: 
 
 ```
@@ -138,8 +142,8 @@ void withdraw(int amount) {
 
 `acquire`, `release` 두 가지 동작이 존재한다. 
 - 초기에는 P, V로 불리었다. 네덜란드에서 만들어져 네덜란드어의 약자다. 
-- P는 test를 의미하고 `acquire()`로 사용된다. wait,sleep, down operation 이라고도 부른다. 
-- V는 increment를 의미하고, `release()`로 사용한다. signal, wake-up, up operation 이라고도 부른다. 
+- P(Proberen)는 test를 의미하고 `acquire()`로 사용된다. wait,sleep, down operation 이라고도 부른다. 
+- V(Verhogen)는 increment를 의미하고, `release()`로 사용한다. signal, wake-up, up operation 이라고도 부른다. 
 - 두 연산 모두 atomic하다.
 
 ```java
@@ -172,9 +176,9 @@ class Semaphore {
 
 현재 사용할 수 있는 permit이 없는 경우 (value = 0), acquire메소드는 남는 permit이 생기거나, 인터럽트가 걸리거나, 지정한 시간을 넘겨 타임아웃이 걸리기 전까지 대기한다. release메소드는 확보했던 permit을 다시 세마포어에 반납한다. 
 
-- `acquire()`는 value값을 감소시킨다. value값이 0보다 작으면, 이미 임계구역에 어느 프로세스가 존재한다는 의미다. 따라서 현재 프로세스는 접근하지 못하도록 막아야 한다. list(큐)라는 기다리는 줄에 추가한 뒤 block을 걸어준다. 
+- `acquire()`는 value값을 감소시킨다. value값이 0보다 작으면, 이미 임계구역에 어느 프로세스가 존재한다는 의미다. 따라서 현재 프로세스는 접근하지 못하도록 막아야 한다. list(큐)라는 기다리는 줄에 추가한 뒤 block을 걸어준다. 누가 꺼내주기 전까지 block한다. 
 
-- `release()`는 value값을 증가시킨다. value값이 0보다 같거나 작으면 임계구역에 진입하려고 대기하는 프로세스가 list에 남아있다는 의미다. 이 프로세스 중 하나를 꺼내서 임계구역을 수행할 수 있도록 한다. 
+- `release()`는 value값을 증가시킨다. value값이 0보다 같거나 작으면 임계구역에 진입하려고 대기하는 프로세스가 list에 남아있다는 의미다. 이 프로세스 중 하나를 큐에서 꺼내 깨워줘서 임계구역을 수행할 수 있도록 한다. 
 
 
 
@@ -190,8 +194,96 @@ V(s);
 ```
 
 
-세마포는 일반적으로 상호 배타(mutual exclusion)를 위해 사용한다. 
+세마포는 상호 배타(mutual exclusion)나 Ordering을 위해 사용한다. 
 
+
+### 상황1. 상호 배타 목적으로 사용 
+
+위의 은행계좌 문제에 세마포를 적용시켜 보면 다음과 같다: 
+
+```java
+import java.util.concurrent.Semaphore;  // 세마포를 추가한다.
+
+class BankAccount {
+	int balance;
+
+	Semaphore sem;
+	BankAccount() {   
+		sem = new Semaphore(1);  // Semaphore value 값을 1로 초기화한다.
+	}
+
+	void deposit(int amount) {
+		try {
+			sem.acquire();   // 임계구역에 들어가기를 요청한다.
+		} catch (InterruptedException e) {}
+	  /* 임계 구역 */  
+		int temp = balance + amount;
+		System.out.print("+");
+		balance = temp;
+
+		sem.release();   // 임계구역에서 나간다.
+	}
+	void withdraw(int amount) {
+		try {
+			sem.acquire();
+		} catch (InterruptedException e) {}
+	  /* 임계 구역 */  
+		int temp = balance - amount;
+		System.out.print("-");
+		balance = temp;
+
+		sem.release();
+	}
+	int getBalance() {
+		return balance;
+	}
+}
+```
+
+- `value` 값은 임계구역에 몇 개의 프로세스가 접근할 지 정하는 것과 같다. 
+- 위 코드에서는 하나의 프로세스만 접근가능하기 때문에 1로 초기화 한다. 
+- 위 코드로 실행시 입출금 금액을 동일하게 각각 100번, 1000번 돌려도 정상적인 잔액(balance) 0원이 나온다. 
+몇 번을 실행하여도 같은 결과값이 출력된다. 
+
+
+
+### Ordering 
+프로세스/쓰레드 동기화에서는 임계구역 문제를 해결하는 것도 중요하지만, 프로세스의 실행 순서를 제어하는 것도 중요하다.
+
+세마포는 상호 배타뿐 아니라 ordering을 하기 위해서도 사용한다. \
+프로세스의 **실행 순서를 원하는 순서**로 설정 할 수 있다.
+
+
+- 예: 프로세스 두 개 P1, P2가 있다. P1, P2 순으로 실행하기를 원한다. 
+
+아래와 같이 설정해줄 수 있다. 
+`sem value = 0;`
+
+| P1       |  P2    | 
+|:---------|:----------:|
+|          | ```sem.acquire()```| 
+| Section 1| Section 2   | 
+|-----------------------|
+| ```sem.release() ```|    | 
+
+
+세마포로 감싼 구역에 들어갈 수 있는 프로세스 수(value)를 0으로 설정한다. 
+
+
+- P1이 먼저 실행된 경우
+  - Section 1 전에 아무런 동작이 없으므로 바로 수행한다.
+  - sem.release() 를 만나면 value값을 1 증가시키고, 세마포 큐에 있는 프로세스를 깨워준다. 현재 큐에 프로세스가 없으므로 아무 동작도 하지 않는다.
+  - P2가 실행된다.
+  - P2의 sem.acquire() 를 만나면 현재 1인 value값을 감소시켜 0이 된다. value = 0이면 block을 하지 않으므로(value < 0 일때 block 한다), 무사히 Section 2가 수행된다.
+
+
+- P2가 먼저 실행된 경우
+  - Section 2 이전에 sem.acquire() 가 있으므로 이를 수행한다. 현재 0인 value값을 감소시켜 -1 이 된다. value값이 음수면 해당 프로세스를 block시킨다. 세마포 큐에 삽입한다. 
+  - P1이 실행되면 Section 1이 바로 수행된다.
+  - sem.release() 를 만나면 value값을 1 증가시켜 0이 된다. value<=0 컨디션을 채우고 세마포 큐에 있는 P2 프로세스를 깨워준다.
+  - P2의 Section 2가 수행된다.
+  
+위와 같이 P1, P2 둘 중 어느 것이 먼저 실행하여도 결과적으로 P1,P2 순서로 수행한다.
 
 # References
 [^fn1]:[codemcd님 velog - 프로세스 동기화](https://velog.io/@codemcd/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9COS-8.-%ED%94%84%EB%A1%9C%EC%84%B8%EC%8A%A4-%EB%8F%99%EA%B8%B0%ED%99%94-1){:target="_blank"}
@@ -200,6 +292,7 @@ V(s);
 [^fn4]:[Wook's tistory](https://kpuls.tistory.com/51){:target="_blank"}
 [^fn5]:[돼지왕왕돼지님 티스토리](https://aroundck.tistory.com/5873){:target="_blank"}
 [^fn6]:[geeksforgeeks - semaphores](https://www.geeksforgeeks.org/semaphores-in-process-synchronization/){:target="_blank"}
+[^fn7]:[doyuni님 velog](https://velog.io/@doyuni/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9COS-6.-Process-Synchronization){:target="_blank"}
 
 
 

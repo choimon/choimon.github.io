@@ -2,8 +2,9 @@
 title: '절대 경로로 정적파일(이미지) 가져오기'
 last_modified_at: 2021-09-30T19:10
 categories:
-  - ReactNative
+  - Mobile
 tags:
+  - mobile
   - reactnative
   - npm
   - absolute path

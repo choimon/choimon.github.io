@@ -2,8 +2,9 @@
 title: 'ReactNative로 앱 만들기 시작'
 last_modified_at: 2021-09-29T01:05
 categories:
-  - ReactNative
+  - Mobile
 tags:
+  - mobile
   - reactnative
 ---
 

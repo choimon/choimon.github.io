@@ -161,4 +161,4 @@ tightvncserver :0 -geometry 1280x800 -depth 16 -pixelformat rgb565
 
 
 ## References
-[^fn1]: [https://dog.wtf/tech/run-kali-in-docker-and-install-desktop-environment-and-vnc/](https://dog.wtf/tech/run-kali-in-docker-and-install-desktop-environment-and-vnc/){:target="_blank"}
+[^fn1]: [dog2's blog](https://dog.wtf/tech/run-kali-in-docker-and-install-desktop-environment-and-vnc/){:target="_blank"}

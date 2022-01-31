@@ -2,7 +2,7 @@
 title: '짱쉬운 도커와 도커컴포즈 설치'
 last_modified_at: 2022-01-31T21:54
 categories:
-  - docker
+  - Docker
 tags:
   - docker-compose
   - install

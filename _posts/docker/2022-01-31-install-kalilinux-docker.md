@@ -2,7 +2,7 @@
 title: '칼리 리눅스 도커 컨테이너 설치와 VNC 설정'
 last_modified_at: 2022-01-31T23:10
 categories:
-  - docker
+  - Docker
 tags:
   - docker-compose
   - kalilinux 

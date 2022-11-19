@@ -1,6 +1,6 @@
 ---
 title: 'How to use Latex(MathJax) on Minimal Mistakes Github blogs'
-last_modified_at: 2021-05-21T20:41
+last_modified_at: 2022-11-19T21:41
 categories:
   - Blog
 tags:
@@ -190,6 +190,10 @@ $$
       3n+1, & \text{if $n$ is odd}
       \end{cases}
 $$
+
+$$ \frac{4}{3}$$
+
+
 {% raw %}
 ```
 \\[p(\theta) = \mathbf{\prod}_{i,c}p(\mathbf{\theta}^i(c))\\]
@@ -218,6 +222,8 @@ $$
       3n+1, & \text{if $n$ is odd}
       \end{cases}
 $$
+
+$$ \frac{4}{3}$$
 ```
 {% endraw%}
 

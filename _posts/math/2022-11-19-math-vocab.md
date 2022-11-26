@@ -5,6 +5,8 @@ categories:
   - Math
 tags:
   - math vocab
+  - proof
+  - matrix
 toc: true
 toc_sticky: true
 use_math: true
@@ -33,6 +35,19 @@ use_math: true
 <!-- ![image](/assets/images/profile_cafe.JPG) -->
 
 
+## Properties (법칙, 성질)
+
+| English    | Korean      |  Description   |  
+|:-----------|:------------|:---------------|
+|      |      미지수    |        | 
+|  commutative property   |   교환법칙    |   $$a+b = b+a \ where \ a,b \in \mathbb(R)$$  | 
+|  associative property   |   결합법칙    |   $$a+(b+c) = (a+b)+c$$     | 
+|  distributive property   |   분배법칙    |   $$(a+b)\times c= a\times c + b\times c$$     | 
+|   identity element <br/>  
+    neutral element    |   항등원    |   $$a+$$ <span class="highlight"> $$0$$</span> $$= a$$ (real number addition)<br/> $$a\times$$ <span class="highlight">$$1 $$</span>$$ = a$$ (real number multiplication)    | 
+|  inverse element  |   역원    |   $$a$$ <span class="highlight">$$-a$$</span> $$= 0$$  (real number addition)<br/> $$a\times$$ <span class="highlight"> $$\frac{1}{a}$$</span> $$ = 1$$  ( $$ \forall a \in \mathbb{R} \setminus \{0\} $$, real number multiplication) | 
+
+
 # Linear Algebra (선형 대수)
 
 ## Matrices (행렬)
@@ -59,6 +74,15 @@ use_math: true
 | cofactpr matrix  |    여인수 행렬   |  | 
 | adjoint matrix  |    수반 행렬   | 여인수행렬의 전치($$T$$) | 
 
+## Vector (벡터), Vector Space (벡터 공간)
+
+
+| English    | Korean      |  Description   |  
+|:-----------|:------------|:---------------|
+| inner product <br/> dot product | 내적    | | 
+|  (orthogonal) projection | 정사영    | | 
+| orthogonal vector | 정사영벡터 <br/> 그림자벡터   | | 
+| field | 체   | | 
 
 ## other def's
 
@@ -80,6 +104,7 @@ use_math: true
 
 
 
+
 # Proof (증명)
 
 | English    | Korean      |  Description   |  
@@ -93,31 +118,31 @@ use_math: true
 |  proof by contradiction       |      모순 증명법 <br/> 귀류법    |      | 
 |  Direct Proof      |      직접 증명법    |         | 
 |  Mathematical Induction      |      수학적 귀납법    |   n=1, n=k    | 
-
-
-## Properties (법칙, 성질)
-
-| English    | Korean      |  Description   |  
-|:-----------|:------------|:---------------|
-|      |      미지수    |        | 
-|  commutative property   |   교환법칙    |   $$a+b = b+a \ where \ a,b \in \mathbb(R)$$  | 
-|  associative property   |   결합법칙    |   $$a+(b+c) = (a+b)+c$$     | 
-|  distributive property   |   분배법칙    |   $$(a+b)\times c= a\times c + b\times c$$     | 
-|   identity element <br/>  
-    neutral element    |   항등원    |   $$a+$$ <span class="highlight"> $$0$$</span> $$= a$$ (real number addition)<br/> $$a\times$$ <span class="highlight">$$1 $$</span>$$ = a$$ (real number multiplication)    | 
-|  inverse element  |   역원    |   $$a$$ <span class="highlight">$$-a$$</span> $$= 0$$  (real number addition)<br/> $$a\times$$ <span class="highlight"> $$\frac{1}{a}$$</span> $$ = 1$$  ( $$ \forall a \in \mathbb{R} \setminus \{0\} $$, real number multiplication) | 
+|  **sufficient** condition <br/> if (=>)    |    충분 조건    |    <span class="highlight">$$A$$</span>$$ \implies B$$  일때,<br/> A: B를 만족하기 위한 충분조건<br/>(A만 만족하면, B를 만족하기에 충분)   | 
+|  necessary condition  <br/> only if (<=)     |     필요조건    |    $$ A \implies$$  <span class="highlight">$$B$$</span>  일때, <br/> B: A를 만족하기 위한 필요조건 <br/>(A를 만족하려면 우선 B의 만족이 필요)   | 
+|  if and only if <br/> iff      |     필요충분조건    |    <span class="highlight"> $$\iff$$</span> <br/>  $$ B \implies A \ and \ A \implies B$$      | 
 
 
 
 # Others
 
 
-| English    | Korean      |  Description   |  
-|:-----------|:------------|:---------------|
-|      |      미지수    |        | 
-|  cofactor   |      여인수    |        | 
-|  square   |      자승    |   제곱,같은 수 두 번 곱함     | 
-
+| English       | Korean      |  Description   |  
+|:--------------|:------------|:---------------|
+|               |     미지수    |        | 
+|  cofactor     |     여인수    |        | 
+|  square       |      자승     |   제곱,같은 수 두 번 곱함     | 
+|  polynomial   |     다항식    |       | 
+|  coefficient   |     계수    |       | 
+|  continuous function   |     연속함수    |       | 
+|  domain  |     정의역    |   $$f: X->Y$$ 일때 시작점 $$X$$ 집합.   | 
+|  codomain <br/>
+   target set   |     공변역    |  $$f: X->Y$$ 일때 끝점 $$Y$$ 집합. <br/> the set of all possible values which can come out as a result. it refers to the def of a fxn.  | 
+|  image  |     상    |    $$y=f(x)$$ 일 때, y는 x의 image(상)   | 
+|  preimage  |   원상    |    $$y=f(x)$$ 일 때, x는 y의 preimage(원상)   | 
+|  range  |     치역    |    $$X$$ 집합에 속한 모든 원소들의 image를 모아둔 집합. <br/>  the set of values which actually come out. refers to the image of a function  | 
+|  basis  |   기저    |     | 
+|  dimension  |   차원    |  벡터공간의 차원은 V의 기저basis의 원소의 개수   | 
 
 
 

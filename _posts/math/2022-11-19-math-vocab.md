@@ -1,12 +1,14 @@
 ---
 title: '수학 한글, 영어 단어 모음'
-last_modified_at: 2022-11-19T20:55
+last_modified_at: 2022-11-27T23:40
 categories:
   - Math
 tags:
   - math vocab
   - proof
   - matrix
+  - linear algebra
+  - vector
 toc: true
 toc_sticky: true
 use_math: true
@@ -73,6 +75,7 @@ use_math: true
 | reduced row echelon matrix |    전치 행렬   | For an $n\times m$ matrix $$A$$,  $$A^{T} = (a_{ij}^T)$$ and <br/> $$a_{ij}^T = a_{ji} \ (1 \leq i \leq m, 1 \leq j \leq n$$) | 
 | cofactpr matrix  |    여인수 행렬   |  | 
 | adjoint matrix  |    수반 행렬   | 여인수행렬의 전치($$T$$) | 
+| similar matrix  |    닮은 행렬 <br/>상사 행렬   | | 
 
 ## Vector (벡터), Vector Space (벡터 공간)
 
@@ -83,6 +86,20 @@ use_math: true
 |  (orthogonal) projection | 정사영    | | 
 | orthogonal vector | 정사영벡터 <br/> 그림자벡터   | | 
 | field | 체   | | 
+|  basis  |   기저    |     | 
+|  standard basis  |   표준 기저    |     | 
+|  dimension  |   차원    |  $dimV$ 벡터공간의 차원은 V의 기저(basis)를 구성하는 원소의 개수   | 
+|  linear combination  |   일차결합    |    | 
+|  unit vector | 단위 벡터 | |
+|  linearly independent | 일차 독립하다 | 일차 결합으로 표현 못함|
+|  linearly dependent | 일차 종속하다 | 일차 결합으로 표현 가능 |
+|  linear transformation  |   선형변환    |    | 
+|  kernel  |   핵    |    | 
+|  image  |   상    |    | 
+|  isomorphic  |    동형    | A와 B는 동형. $A \approx B$  | 
+|  change of basis  |    기저 변환    |   | 
+|  eigenvalue  |   고유값   |   | 
+|  eigenvector  |   고유벡터   |   | 
 
 ## other def's
 
@@ -99,7 +116,9 @@ use_math: true
 | cofactor expansion    | 여인수 전개    | 행렬식의 여인수 전개| 
 | Laplace expansion    | 라플라스 전개    | 행렬식의 라플라스 전개| 
 | minor  |    소행렬식  |  $$A$$가 n차 정방행렬일 때, A 의 (i,j) 소행렬식 $$M_{ij}$$는 i행, j  열 없앤 (n-1)차 정방행렬의 행렬식 값| 
+|  cofactor     |     여인수    |    the signed minor used to find the inverse of the matrix, adjoined <br/> $$A_{ij} = (-1)^{i+j} det M_{ij}$$   | 
 | ordered pair  | 순서조    | | 
+
 
 
 
@@ -114,35 +133,49 @@ use_math: true
 |  Theorem      |      정리    |         | 
 |  Proposition      |      명제    |        | 
 |  Lemma      |      부명제    |         | 
-|  Corollary      |    따름 정리    |   Theorem에 따름    | 
+|  Corollary      |    따름 정리    |   Theorem에 따름     | 
 |  proof by contradiction       |      모순 증명법 <br/> 귀류법    |      | 
 |  Direct Proof      |      직접 증명법    |         | 
 |  Mathematical Induction      |      수학적 귀납법    |   n=1, n=k    | 
-|  **sufficient** condition <br/> if (=>)    |    충분 조건    |    <span class="highlight">$$A$$</span>$$ \implies B$$  일때,<br/> A: B를 만족하기 위한 충분조건<br/>(A만 만족하면, B를 만족하기에 충분)   | 
-|  necessary condition  <br/> only if (<=)     |     필요조건    |    $$ A \implies$$  <span class="highlight">$$B$$</span>  일때, <br/> B: A를 만족하기 위한 필요조건 <br/>(A를 만족하려면 우선 B의 만족이 필요)   | 
-|  if and only if <br/> iff      |     필요충분조건    |    <span class="highlight"> $$\iff$$</span> <br/>  $$ B \implies A \ and \ A \implies B$$      | 
+|  sufficient condition <br/> if (=>)    |    충분 조건    |    <span class="highlight">$A$</span>$ \implies B$  일때,<br/> A: B를 만족하기 위한 충분조건<br/>(A만 만족하면, B를 만족하기에 충분)   | 
+|  necessary condition  <br/> only if (<=)     |     필요조건    |    $ A \implies$  <span class="highlight">$B$</span>  일때, <br/> B: A를 만족하기 위한 필요조건 <br/>(A를 만족하려면 우선 B의 만족이 필요)   | 
+|  if and only if <br/> iff      |     필요충분조건    |    <span class="highlight"> $\iff$</span> <br/>  $ B \implies A \ and \ A \implies B$      | 
+|  Therefore      |          |    $\therefore$     | 
+|  because      |          |    $\because$     | 
+|  there exists      |          |    $\exists$     | 
+|  there exists unique     |          |    $!\exists$     | 
+<!-- |  equivalent    |     동치     |        |  -->
+
+
+
+동치
 
 
 
 # Others
 
 
+
 | English       | Korean      |  Description   |  
 |:--------------|:------------|:---------------|
 |               |     미지수    |        | 
-|  cofactor     |     여인수    |        | 
 |  square       |      자승     |   제곱,같은 수 두 번 곱함     | 
 |  polynomial   |     다항식    |       | 
-|  coefficient   |     계수    |       | 
+|  coefficient   |     계수    |   $5x + 10$ 에서 $5$    | 
+|  term   |     항    |     $ 8x + 9 $ 에서 $8x$ 와 $9$   | 
 |  continuous function   |     연속함수    |       | 
 |  domain  |     정의역    |   $$f: X->Y$$ 일때 시작점 $$X$$ 집합.   | 
 |  codomain <br/>
-   target set   |     공변역    |  $$f: X->Y$$ 일때 끝점 $$Y$$ 집합. <br/> the set of all possible values which can come out as a result. it refers to the def of a fxn.  | 
-|  image  |     상    |    $$y=f(x)$$ 일 때, y는 x의 image(상)   | 
-|  preimage  |   원상    |    $$y=f(x)$$ 일 때, x는 y의 preimage(원상)   | 
+   target set   |     공역, <br/> 공변역    |  $$f: X->Y$$ 일때 끝점 $$Y$$ 집합. <br/> the set of all possible values which can come out as a result. it refers to the def of a fxn.  | 
+|  image  |     상    |    $$y=f(x)$$ 일 때, y는 x의 image(상) <br/> 어떤 함수에 대한 정의역의 원소(들)에 대응하는 공역의 원소(들)   | 
+|  inverse image <br/> preimage   |    역상, <br/> 원상   |    어떤 함수에 대한 공역의 원소(들)에 대응하는 정의역의 원소(들). <br/> $$y=f(x)$$ 일 때, x는 y의 inverse image(역상) | 
 |  range  |     치역    |    $$X$$ 집합에 속한 모든 원소들의 image를 모아둔 집합. <br/>  the set of values which actually come out. refers to the image of a function  | 
-|  basis  |   기저    |     | 
-|  dimension  |   차원    |  벡터공간의 차원은 V의 기저basis의 원소의 개수   | 
+|  mapping       |      사상     |    |
+|  surjection       |      전사사상     | $f: A -> B$ 일때,  $f(A) = B$.<br/> range=codomain|
+|  injection       |      단사사상     | $f: A -> B$ 일때,  $\forall b \in B, f^{-1}(b) =  \emptyset or 1개$ 원소이면 $f$ 는 단사사상. |
+|  bijection       |      전단사사상     |    |
+|  coordinate system    |      좌표계     |    |
+|  Orthogonal coordinates    |      직교 좌표계     |   |
 
 
 

@@ -2,7 +2,7 @@
 title: 'VS Code에서 WSL 터미널 설정하기'
 last_modified_at: 2022-12-03T23:36
 categories:
-  - Software
+  - Terminal
 tags:
   - wsl
   - vs code

@@ -1,10 +1,11 @@
 ---
-title: '커스텀 bash 쉘 - 작업 폴더 길이 줄이기'
+title: '커스텀 bash 쉘 터미널 - 작업 폴더 길이 줄이기'
 last_modified_at: 2022-12-04T15:50
 categories:
   - Terminal
 tags:
   - bash
+  - shell
   - terminal
   - wsl
   - ubuntu

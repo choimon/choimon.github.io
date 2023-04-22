@@ -1,6 +1,6 @@
 ---
 title: 'Shadow DOM을 활용하자'
-last_modified_at: 2023-04-22T11:47
+last_modified_at: 2023-04-22T14:44
 categories:
   - frontend
 tags:
@@ -87,7 +87,7 @@ document.body.appendChild(pElt2)
 ![shadow_dom_ex]({{"/assets/images/posts/20230422_shadowdom_ex.png"| relative_url}})<!-- {:style="height:500px;"} -->
 
 
-## Shadow DOM을 보기위한 chrome 브라우저 설정`
+## Shadow DOM을 보기위한 chrome 브라우저 설정
 위에 개발자가 직접 넣은 Shadow DOM 뿐만 아니라, 기본적으로 제공하는 `<input type="file">` 이나 `<textarea>`와 같은 HTML 요소들도 shadow DOM을 사용한다[^fn3]. 
 기본적으로는 크롬 브라우저 개발자 도구 `Elements`탭에서는 위 요소들 안의 shadow DOM 요소들까지 보여주지 않는다. 
 ![shadow_dom_before_setting]({{"/assets/images/posts/20230422_shadowdom_beforeset.png"| relative_url}}){:style="width:80%;"}

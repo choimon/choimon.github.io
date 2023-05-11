@@ -1,6 +1,6 @@
 ---
 title: '브라우저에서 자바스크립트 디버그하는 방법'
-last_modified_at: 2023-05-11T23:55
+last_modified_at: 2023-05-12T00:05
 categories:
   - frontend
 tags:
@@ -31,14 +31,52 @@ Console API는 Web API 중 일부이며, 아마 개발자들이 제일 많이 �
 콘솔 로그는 단순이 프린팅하는 방법 말고도 색상을 달리한다던지 다양한 방법으로 프린트 할 수 있다. 이 부분은 다음에 작성하겠다. 
 단순 출력하는 `console.log`말고도 `console.warn`, `console.error`, `console.assert`, `console.count`, `console.time`[^fn2] 과 같이 다양한 메소드가 존재한다.
 
-### console.log 여러 스타일 
-`console.log()`를 여러번 호출하다보면, 콘솔 창에서 내가 원하는 콘솔 메세지를 찾기 어려울 때가 있다. 이때 사용하면 유용할 것 같은 방법을 소개한다. 콘솔 로그 메세지를 단순 프린트하는 것이 아니라, 폰트 크기, 색상처럼 다양한 스타일을 줄 수 있다. [^fn3]
+### console 메세지 포맷하기
+자바의 `String.format`에서 `%s`와 같은 specifier처럼 콘솔 메세지를 formatting specifier를 사용해 포맷할 수 있다. 
+
+| Specifier    | Output      |  Example   |  
+|:-------------|:------------|:---------------|
+| `%s`         |  값을 string으로 포맷          |      | 
+| `%i` 또는<br/>`%d`  |  값을 integer로 포맷          |        | 
+| `%f`     |  값을 floating point 값으로 포맷         |        | 
+| `%o`     |  값을 expandable DOM 엘리먼트로 포맷         |        | 
+| `%O`     |  값을 expandable 자바스크립트 object로 포맷         |        | 
+| `%c`     |  출력 문자열에 CSS 스타일 값을 적용한다. 값은 두번째 파라미터로 전달받는다.   |        | 
+
+
+위 specifier를 사용한 예제는 다음과 같다.
+``` javascript
+const petName = "초이";
+const petAge = 100;
+const petInfo = {
+    owner: "choichoi",
+    nationality: 'korea',
+    favoriteFood : "lettuce"
+}; 
+const googleLogoElt = document.querySelector("img.lnXdpd");
+
+console.log('우리집 펫 이름은 %s야. 나이는 %i살이고, 더 자세한 정보는 아래와 같아 %o', petName, petAge, petInfo);
+
+// typeof googleLogoElt 결과는 object 다.
+console.log('구글 로그 돔 엘리먼트는 %O', googleLogoElt); 
+console.log('구글 로그 돔 엘리먼트는 %o', googleLogoElt); 
+console.log('구글 로그 돔 엘리먼트는 %s', googleLogoElt); 
+console.log('구글 로그 돔 엘리먼트는 %i', googleLogoElt); 
+
+```
+
+![custom console.log format]({{"/assets/images/posts/20230511_js_debug_debugger_3.png"| relative_url}})
+
+전달한 specifier에 따라 프린트된 구글 로고 엘리먼트가 다른 것을 볼 수 있다. 
+
+### console 메세지에 스타일 주기 
+`console.log()`를 여러번 호출하다보면, 콘솔 창에서 내가 원하는 콘솔 메세지를 찾기 어려울 때가 있다. 이때 사용하면 유용할 것 같은 방법을 소개한다. 콘솔 메세지를 단순히 문자열을 전달하여 프린트하는 것이 아니라, 폰트 크기와 색상같이 다양한 스타일을 줘서 프린트할 수 있다. [^fn3]
 ```javascript 
 const style = 'background-color: darkblue; color: white; font-style: italic; border: 5px solid hotpink; font-size: 2em;'
 console.log("%c커스텀 스타일이다!", style);
 ```
-아래 사진과 같이 배경 다크 블루에, 보더는 핫 핑크색, 그리고 폰트 크기를 키워서 다른 콘솔 로그 메세지와 다르게 표시할 수 있다. 
-![custom console.log style]({{"/assets/images/posts/20230511_debug_debugger_2.png"| relative_url}})
+위 `style`변수에 선언한 것처럼, 다크 블루 배경에, 핫핑크 테두리와 italic된 2em크기의 흰색 폰트를 지정해서, 다른 콘솔 메세지와 다르게 표시할 수 있다. 콘솔에서 보여지는 결과는 다음과 같다. 
+![custom console.log style]({{"/assets/images/posts/20230511_js_debug_debugger_2.png"| relative_url}})
 
 
 ## debugger statement (명령어)

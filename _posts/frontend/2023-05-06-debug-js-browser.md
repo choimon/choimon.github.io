@@ -1,6 +1,6 @@
 ---
 title: '브라우저에서 자바스크립트 디버그하는 방법'
-last_modified_at: 2023-05-06T21:00
+last_modified_at: 2023-05-11T23:55
 categories:
   - frontend
 tags:
@@ -31,9 +31,18 @@ Console API는 Web API 중 일부이며, 아마 개발자들이 제일 많이 �
 콘솔 로그는 단순이 프린팅하는 방법 말고도 색상을 달리한다던지 다양한 방법으로 프린트 할 수 있다. 이 부분은 다음에 작성하겠다. 
 단순 출력하는 `console.log`말고도 `console.warn`, `console.error`, `console.assert`, `console.count`, `console.time`[^fn2] 과 같이 다양한 메소드가 존재한다.
 
+### console.log 여러 스타일 
+`console.log()`를 여러번 호출하다보면, 콘솔 창에서 내가 원하는 콘솔 메세지를 찾기 어려울 때가 있다. 이때 사용하면 유용할 것 같은 방법을 소개한다. 콘솔 로그 메세지를 단순 프린트하는 것이 아니라, 폰트 크기, 색상처럼 다양한 스타일을 줄 수 있다. [^fn3]
+```javascript 
+const style = 'background-color: darkblue; color: white; font-style: italic; border: 5px solid hotpink; font-size: 2em;'
+console.log("%c커스텀 스타일이다!", style);
+```
+아래 사진과 같이 배경 다크 블루에, 보더는 핫 핑크색, 그리고 폰트 크기를 키워서 다른 콘솔 로그 메세지와 다르게 표시할 수 있다. 
+![custom console.log style]({{"/assets/images/posts/20230511_debug_debugger_2.png"| relative_url}})
+
 
 ## debugger statement (명령어)
-브라우저의 개발자 도구 탭 중 하나인 `Sources` 탭에서 현재 브라우저가 실행하고 있는 JS 파일을 볼 수 있는데, `debugger` 명령어는 이 때 유용하게 사용할 수 있다. `debugger` 명령어는 자바스크립트 키워드이며, 다음과 같이 JS파일 중간에 넣을 수 있다. 
+브라우저의 개발자 도구 탭 중 하나인 `Sources` 탭에서 현재 브라우저가 실행하고 있는 JS 파일을 볼 수 있는데, `debugger` 명령어는 이 때 유용하게 사용할 수 있다. `debugger` 명령어는 자바스크립트 키워드이며, 다음과 같이 JS파일 중간에 넣을 수 있다.[^fn4]
 
 ```javascript
 callMyName('choichoi')
@@ -58,4 +67,5 @@ function callMyName(name) {
 # References
 [^fn1]: [mdn web docs: Console API](https://developer.mozilla.org/en-US/docs/Web/API/Console_API){:target="_blank"}
 [^fn2]: [mdn web docs: Console Time](https://developer.mozilla.org/en-US/docs/Web/API/console/time){:target="_blank"}
-[^fn3]: [mdn web docs: debugger statement](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/debugger){:target="_blank"}
+[^fn3]: [chrome developer devtools](https://developer.chrome.com/docs/devtools/console/format-style/){:target="_blank"}
+[^fn4]: [mdn web docs: debugger statement](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/debugger){:target="_blank"}

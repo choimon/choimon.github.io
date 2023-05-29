@@ -1,6 +1,6 @@
 ---
 title: '수학 한글, 영어 단어 모음'
-last_modified_at: 2022-11-27T23:40
+last_modified_at: 2023-05-29T11:20
 categories:
   - Math
 tags:
@@ -76,6 +76,8 @@ use_math: true
 | cofactpr matrix  |    여인수 행렬   |  | 
 | adjoint matrix  |    수반 행렬   | 여인수행렬의 전치($$T$$) | 
 | similar matrix  |    닮은 행렬 <br/>상사 행렬   | | 
+| orthogonal matrix  |    직교 행렬   | | 
+| symmetric matrix  |    대칭 행렬   | $A = A^T$| 
 
 ## Vector (벡터), Vector Space (벡터 공간)
 
@@ -98,8 +100,16 @@ use_math: true
 |  image  |   상    |    | 
 |  isomorphic  |    동형    | A와 B는 동형. $A \approx B$  | 
 |  change of basis  |    기저 변환    |   | 
-|  eigenvalue  |   고유값   |   | 
+|  eigenvalue  |   고유값   |  eigen means 'own' in German | 
 |  eigenvector  |   고유벡터   |   | 
+|  eigenspace  |   고유공간   |   | 
+|  characteristic equation  |   특성방정식   | an eq related to eigenvalue <br/> $$|M - \lambda I | = 0$$ | 
+|  inner product space  |   내적공간   |   | 
+|  orthogonal set  |   직교백터   | 서로 직교인 $O$아님 벡터들의 집합| 
+|  orthonormal set  |  단위직교집합   | 길이가 1인 직교벡터들의 집합  | 
+|  orthonormal complement  |  직교보공간,<br/>직교여공간   | 길이가 1인 직교벡터들의 집합  | 
+
+
 
 ## other def's
 
@@ -176,7 +186,8 @@ use_math: true
 |  bijection       |      전단사사상     |    |
 |  coordinate system    |      좌표계     |    |
 |  Orthogonal coordinates    |      직교 좌표계     |   |
-
+| least-squares solution   | 최소자승해    | | 
+| intercept   | 절편     | 일차 함수  $y=mx+b$ 에서 $b$는 y 절편 또는 y intercept.| 
 
 
 <!-- https://talk.jekyllrb.com/t/how-do-i-embed-javascript-in-jekyll/4374/12 -->

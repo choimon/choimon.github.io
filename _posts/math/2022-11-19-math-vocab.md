@@ -63,7 +63,8 @@ use_math: true
 | square matrix of order n |   n차 정방 행렬  |    $$ m=n$$ for an $$m\times n$$ matrix , $$n \times n$$     | 
 | Diagonal matrix      |      대각 행렬    |      $$a_{ij}=0 \ where \ i\neq j$$      | 
 | Scalar matrix      |      스칼라 행렬    |      $$a_{ii}=c \ where \ 1 \leq i \leq n$$      | 
-| Identity matrix      |      단위 행렬    |      $$a_{ii}=1 \ where \ 1 \leq i \leq n$$      | 
+| Identity matrix      |     항등 행렬    |      $$a_{ii}=1 \ where \ 1 \leq i \leq n$$      | 
+| unit matrix      |      단위 행렬    |      $$a_{ii}=1 \ where \ 1 \leq i \leq n$$      | 
 | Inverse matrix      |      역 행렬    |         | 
 | Regular matrix   |      정칙 행렬    |   역 행렬을 가질 수 있는 행렬    | 
 | nonsingular matrix   |      비특이 행렬    |   역 행렬을 가질 수 있는 행렬    | 
@@ -188,7 +189,7 @@ use_math: true
 |  Orthogonal coordinates    |      직교 좌표계     |   |
 | least-squares solution   | 최소자승해    | | 
 | intercept   | 절편     | 일차 함수  $y=mx+b$ 에서 $b$는 y 절편 또는 y intercept.| 
-
+| polar coordinates   | 극좌표     | | 
 
 <!-- https://talk.jekyllrb.com/t/how-do-i-embed-javascript-in-jekyll/4374/12 -->
 

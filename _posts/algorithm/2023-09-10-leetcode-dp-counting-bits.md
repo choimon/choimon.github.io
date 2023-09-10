@@ -11,7 +11,7 @@ tags:
 toc: true
 ---
 
-[leetcode](https://leetcode.com/problems/counting-bits/description/)에서 가져온 문제입니다.
+This algorithm problem is from [leetcode](https://leetcode.com/problems/counting-bits/description/).
 
 ## Problem 
 Given an integer n, return an array ans of length n + 1 such that for each i (0 <= i <= n), ans[i] is the number of 1's in the binary representation of i.

@@ -1,6 +1,6 @@
 ---
 title: 'Vue3에서 전역변수 사용하기 (feat. Vue2 prototype)'
-last_modified_at: 2023-10-11T00:55
+last_modified_at: 2023-10-11T01:00
 categories:
   - frontend
 tags:

@@ -1,5 +1,5 @@
 ---
-title: 'SVG vs Canvas 언제 써야하나 (feat. Chart)'
+title: 'SVG vs Canvas 언제 써야하나'
 last_modified_at: 2023-10-22T16:25
 categories:
   - frontend

@@ -15,8 +15,6 @@ toc_sticky: true
 SVG와 Canvas는 둘다 HTML5에서 추가된 기술이다. 
 둘다 그래픽을 그리는 기술이지만, 그려지는 방식이 다르다.
 
-차트 라이브러리같은 경우 Canvas 기반과 SVG 기반으로 나뉘어져있다 (Echart처럼 둘다 지원하는 라이브러리도 존재한다).
-언제 어떤 기술을 사용해야할지 알아보기 전 각 기술의 특징을 알아보자.
 
 # SVG 
 SVG(Scalable Vector Graphics)는 벡터(vector)이며 선언적(declarative)이다.[^fn1]
@@ -181,7 +179,7 @@ Canvas와 SVG는 상호 배타적인 관계가 아니다.
 | ^^ | 오브젝트 개수가 많아지면(>10k)성능 떨어짐               |                              |
 
 - obj가 많으면 (1,000개 이상) Canvas가 더 빠르다는 의견이 많다.
-- canvas를 사용할 때 화면이 커질수록 그려야할 pixel 개수가 증가하게되어서, 렌더 시간이 늘어나 성능적으로 떨어진다고 한다.
+- canvas를 사용할 때 화면이 커질수록 그려야할 픽셀 개수가 증가하게되어서, 렌더 시간이 늘어나 성능적으로 떨어진다고 한다.
 
 - 디폴트로 SVG를 사용하고, [SVG를 못 쓸 때 Canvas를 쓰라는 의견](https://css-tricks.com/when-to-use-svg-vs-when-to-use-canvas/#aa-svg-is-the-default-choice-canvas-is-the-backup)도 존재함. 
 - 작은 단순한 아이콘, 정적인 이미지 ➡️  SVG 

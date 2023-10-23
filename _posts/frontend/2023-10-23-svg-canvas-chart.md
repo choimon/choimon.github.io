@@ -69,7 +69,8 @@ Echart에서는 소프트웨어 뿐만 아니라 하드웨어 환경도 고려�
 - sw, hw환경 안 좋음 + 많은 Echart 인스턴스가 만들어져하고,브라우저가 crashing되는 경우 ➡️ SVG. (canvas사용했을 때 브라우저 crashing되는 경우는, canvas 개수가 메모리를 차지해 하드웨어 스펙을 초과해 생길 가능성이 높다고 한다)
 - 많은 양의 데이터 (1000개 초과) ➡️ Canvas를 추천
 - 특정 효과(trail effect, 히트맵에 blending 효과 등)는 Canvas에서만 가능하다 ➡️ Canvas만 지원하기 때문에 Canvas
-- 
+
+
 # References
 [^fn1]: [Flatlogic: Best 19+ JavaScript Chart Libraries to Use in 2023](https://flatlogic.com/blog/best-19-javascript-charts-libraries/){:target="_blank"}
 [^fn2]: [stack overflow: SVG vs HTML5 Canvas Based Charts](https://stackoverflow.com/questions/28083421/svg-vs-html5-canvas-based-charts){:target="_blank"}

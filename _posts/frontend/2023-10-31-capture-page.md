@@ -1,6 +1,6 @@
 ---
 title: '페이지를 다양한 방법으로 캡처하자 (feat. puppeteer)'
-last_modified_at: 2023-10-31T23:30
+last_modified_at: 2023-11-01T23:58
 categories:
   - frontend
 tags:
@@ -60,4 +60,43 @@ const path = require('path');
 })();
 ```
 
+
+# client
+브라우저에서 돌아가는 클라이언트 코드안에서 캡처하는 방식을 설명한다. 
+
+## html2canvas
+html2canvas는 웹 페이지를 캡처해주는 JS 라이브러리다. <br/>
+html2canvas는 사실 페이지를 "스크린샷"하지는 않고, 페이지의 DOM을 돌면서, 엘리먼트정보를 습득해서,html과 css를 렌더링해서 해당 페이지의 "카피본(representation)"을 canvas에 그린다. <br/>
+이렇게 그려진 canvas를 이미지로 변환해서 다운로드 받을 수 있다. 
+
+이렇게 때문에 html2canvas 스크립트가 이해하는 property들만 제대로 렌더해서 캡처할 수 있다.
+html2canvas가 제대로 이해하지 못한 CSS 속성들은 캡처되지 않는다. html2canvas가 이해하는 CSS 속성은 [여기](https://html2canvas.hertzen.com/features)에서 확인할 수 있다.
+
+html2canvas 스크립트가 이해하는 엘리먼트/이미지는 same origin에 존재해야한다.cross-origin 콘텐츠는 html2canvas가 읽을 수 없어진다. 
+
+```npm install html2canvas```
+
+
+```javascript
+import html2canvas from 'html2canvas';
+
+const screenshotTarget = document.body;
+html2canvas(screenshotTarget).then(function(canvas) {
+    // document.body.appendChild(canvas);
+    const base64image = canvas.toDataURL("image/png");
+    downloadURI(base64image, "capture-page.png");
+});
+  
+
+
+function downloadURI(uri, name) {
+  var link = document.createElement("a");
+  link.download = name;
+  link.href = uri;
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+}
+
+```
 # References

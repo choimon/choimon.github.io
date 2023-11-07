@@ -1,10 +1,12 @@
 ---
-title: '페이지를 다양한 방법으로 캡처하자 (feat. puppeteer)'
-last_modified_at: 2023-11-01T23:58
+title: '페이지를 다양한 방법으로 캡처하자 (feat. Puppeteer)'
+last_modified_at: 2023-11-08T01:14
 categories:
   - frontend
 tags:
   - puppeteer
+  - playwright
+  - nodejs
 toc: true
 toc_sticky: true
 ---
@@ -22,15 +24,17 @@ toc_sticky: true
 # 서버
 백엔드에서 캡처를 실행해야하는 경우를 설명한다. 
 
-## puppeteer
-[puppeteer](https://github.com/puppeteer/puppeteer)는 Google Chrome팀에서 처음 만든 노드 라이브러리다. <br/>
+## Puppeteer
+[Puppeteer](https://github.com/puppeteer/puppeteer)는 Google Chrome팀에서 2018년에 처음 만든 노드 라이브러리다. <br/>
 테스트나 오토로 돌릴 때 쓰인다고 한다. 
-GUI가 없는 headless chrome browser처럼 동작해서 캡처하고 싶은 영역도 지정할 수 있고, 실제 사용자가 클릭하면 뜨는 것처럼 인터랙션도 줄 수 있다고 한다.
+
+GUI가 없는 headless chrome browser처럼 동작해서 캡처하고 싶은 영역도 지정할 수 있고, 실제 사용자가 클릭하면 뜨는 것처럼 인터랙션도 줄 수 있다.
 
 
-
+설치 명령어:
 ```npm install puppeteer```
 
+전달한 URL페이지를 1920x1080 viewport 사이즈로, png 파일로 캡처하는 예제:
 ```javascript
 
 const puppeteer = require('puppeteer');
@@ -50,7 +54,7 @@ const path = require('path');
   // Set the viewport to match the entire page's dimensions
   await page.setViewport({ width: 1920, height: 1080 }); // Adjust these dimensions as needed
 
-  const pdfPath = path.join(__dirname, 'webpage.pdf');
+  //const pdfPath = path.join(__dirname, 'webpage.pdf');
   // Capture the webpage as a PDF
   // await page.pdf({ path: pdfPath});
   // await page.pdf({ path: 'webpage.pdf', format: 'A4' });
@@ -59,6 +63,57 @@ const path = require('path');
   await browser.close();
 })();
 ```
+
+
+특정 크롬 또는 Chromium 버전을 지정해서 테스트할 수 있다.
+```javascript
+const browser = await puppeteer.launch({executablePath: '/path/to/Chrome'});
+```
+크롬 브라우저 말고도 Firefox도 지원한다고 하는데 아직 실험단계인 것 같다..[^fn1]
+
+## Playwright
+
+Microsoft에서 만든 웹 테스트 및 automation 프레임워크다. Puppeteer보다 비교적 최근인 2020년에 나왔다고 한다.
+Puppeteer처럼 headless browser로 동작해서 캡처하고 싶은 영역도 지정할 수 있고, 실제 사용자가 클릭하면 뜨는 것처럼 인터랙션도 줄 수 있다.
+
+크롬 위주인 Puppeteer와 다르게 크로스 브라우저를 지원한다고 대문짝만하게 광고한다.
+Chromium, Firefox, Webkit 모두 테스트 대상으로 지원한다. 크로스 브라우저 지원이 필요할때는 Puppeteer보다 Playwright를 사용하는게 좋을 것 같다.
+
+JS만 지원하는 Puppeteer와 다르게 Playwright은 JS, Java, Python, .NET C#도 지원한다고 한다.
+
+```shell
+npm install playwright # playwright 라이브러리 설치
+npx playwright install   # 브라우저 설치
+```
+playwright은 버전별로 자신들이 만드는 특정 버전의 browser binary파일을 설치해줘야한다.[^fn3]
+`npx playwright install` 명령어를 통해 설치할 수 있다. 명령어를 실행해보니 종류별로 다 설치하는 것 같아서 chromium만 설치했다.
+
+
+전달한 URL페이지를 1920x1080 viewport 사이즈로, png 파일로 캡처하는 예제:
+```javascript
+const { chromium } = require('playwright');
+
+(async () => {
+  const browser = await chromium.launch();
+  const page = await browser.newPage();
+
+  await page.setViewportSize({ width: 1920, height: 1080 });
+
+  await page.goto('https://echarts.apache.org/examples/en/editor.html?c=area-basic');
+
+  // Wait for the page to load
+  await page.waitForTimeout(5000);
+
+  // await page.pdf({ path: 'webpage.pdf', format: 'A4' });
+  await page.screenshot({ path: 'webpage.png' });
+
+  // Close the browser
+  await browser.close();
+})();
+```
+
+[//]: # (browser는 Chromium/Firefox/Webkit 인스턴스를 뜻한다. 브라우저 인스턴스를 띄우고&#40;launch&#41; 원하는 업무를 수행하고 끝낼때는 browser는 닫아줘야한다 &#40;`browser.close&#40;&#41;`&#41;)
+[//]: # (https://www.cuketest.com/playwright/docs/core-concepts)
 
 
 # client
@@ -99,4 +154,11 @@ function downloadURI(uri, name) {
 }
 
 ```
+
+
 # References
+[^fn1]: [puppeteer: cross-browser support](https://pptr.dev/faq#q-what-is-the-status-of-cross-browser-support){:target="_blank"}
+[^fn2]: [Playwright vs Puppeteer: Which to choose in 2023?](https://www.browserstack.com/guide/playwright-vs-puppeteer){:target="_blank"}
+[^fn3]: [Playwright browsers](https://playwright.dev/docs/browsers){:target="_blank"}
+[^fn4]: [Playwright screenshots](https://playwright.dev/docs/screenshots){:target="_blank"}
+
